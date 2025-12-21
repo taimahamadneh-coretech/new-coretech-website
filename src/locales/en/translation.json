@@ -1,0 +1,161 @@
+{
+  "hero": {
+    "title": "Transform Your Digital Experience",
+    "subtitle": "Your trusted partner for end-to-end telecom infrastructure, cybersecurity, and AI-driven software development.",
+    "buttons": {
+      "products": "Explore Our Products",
+      "contact": "Get in Touch"
+    }
+  },
+  "footer": {
+    "description": "Your trusted partner for end-to-end telecom infrastructure, cybersecurity, and AI-driven software development.",
+    "quickLinks": {
+      "title": "Quick Links",
+      "home": "Home",
+      "about": "About",
+      "products": "Products",
+      "services": "Services",
+      "clients": "Clients",
+      "contact": "Contact"
+    },
+    "services": {
+      "title": "Our Services",
+      "telecom": "Telecom Infrastructure",
+      "cyber": "Cybersecurity Solutions",
+      "software": "Software Development",
+      "ai": "AI & Machine Learning",
+      "cloud": "Cloud Solutions",
+      "consulting": "Consulting Services"
+    },
+    "contact": {
+      "title": "Contact Info",
+      "address": "4th Floor, Mecca Mall Building, Nablus, Palestine",
+      "email": "info@coretechpal.com",
+      "website": "www.coretechpal.com",
+      "phone": "+970 9 234 5678 - 12"
+    },
+    "copyright": "Coretech. All rights reserved."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "partners": "Partners",
+    "products": "Products",
+    "services": "Services",
+    "clients": "Clients",
+    "contact": "Contact",
+    "career": "Careers"
+  },
+  "about": {
+    "sectionTitle": "About Us",
+    "cardTitle": "Overview",
+    "visionTitle": "Vision",
+    "missionTitle": "Mission"
+  },
+  "clients": {
+    "sectionTitle": "Our Clients",
+    "sectionSubtitle": "Trusted by leading organizations across sectors"
+  },
+  "partners": {
+    "sectionTitle": "Our Partners",
+    "sectionSubtitle": "Trusted partnerships that drive innovation and growth"
+  },
+  "products": {
+    "sectionTitle": "Our Products",
+    "sectionSubtitle": "Comprehensive telecommunications infrastructure solutions"
+  },
+  "lang": "en",
+  "contact": {
+    "sectionTitle": "Contact Us",
+    "sectionSubtitle": "Get in touch for innovative solutions",
+    "infoTitle": "Contact Information",
+    "emailLabel": "Email:",
+    "addressLabel": "Address:",
+    "phoneLabel": "Phone:",
+    "formTitle": "Contact Us",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message"
+    },
+    "errors": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Email is invalid",
+      "phoneRequired": "Phone number is required",
+      "phoneInvalid": "Phone number is invalid",
+      "subjectRequired": "Subject is required",
+      "messageRequired": "Message is required"
+    },
+    "alertSuccess": "Thank you for your message! We will contact you soon.",
+    "alertError": "An error occurred, please try again.",
+    "alertNetworkError": "Failed to send message. Please check your connection."
+  },
+  "company": {
+    "address": "4th Floor, Mecca Mall Building, Nablus, Palestine"
+  },
+  "services": {
+    "sectionTitle": "Our Services",
+    "sectionSubtitle": "Advanced ICT and software solutions through strategic partnerships",
+    "offeredTitle": "Services Offered:",
+    "featuresTitle": "Features:",
+    "partnersTitle": "Technology Partners:"
+  },
+  "feedback": {
+    "title": "What Our Clients Say",
+    "subtitle": "Trusted by partners across multiple industries",
+    "woodenPoles": {
+      "comment": "The wooden poles supplied by Coretech exceeded our expectations in quality and durability. Consistent stock availability ensured smooth project execution without delays.",
+      "name": "European Infrastructure Partner",
+      "position": "Construction & Utilities"
+    },
+    "fiber": {
+      "comment": "Coretech delivered a complete fiber network solution from a single source. Quality, flexibility, and technical expertise made them a reliable long-term partner.",
+      "name": "Telecom Network Operator",
+      "position": "Fiber Infrastructure Division"
+    },
+    "cyber": {
+      "comment": "Cybersecurity services provided through Delta Line International were highly professional and reliable. The solutions implemented significantly strengthened our IT security posture.",
+      "name": "Comunity Organization",
+      "position": "ICT & Security Department"
+    },
+    "softwareAi": {
+      "comment": "The collaboration between Coretech and LunaPact delivered a powerful digital solution enhanced by AI. Operational efficiency and system performance improved significantly.",
+      "name": "Digital Services Company",
+      "position": "Technology Director"
+    },
+    "ecommerce": {
+      "comment": "Coretech, in collaboration with LunaPact Technologies, helped us build a secure, scalable, and user-friendly e-commerce platform. The solution exceeded our expectations and supported our business growth.",
+      "name": "Online Retail Business",
+      "position": "E-Commerce Owner"
+    },
+    "steel": {
+      "comment": "The steel structures provided were manufactured with high precision and met all technical requirements. Timely delivery and build quality were outstanding.",
+      "name": "Telecom Infrastructure Company",
+      "position": "Operations Management"
+    }
+  },
+  "map":{
+    "title": "Coretech’s expansion",
+    "sub-title": "Connecting Markets Worldwide",
+    "projects":"Projects",
+    "expansion":"Expansion",
+    "partners": "Partners"
+  },
+    "groupCompanies": {
+    "title": "HiTop Group",
+    "subtitle": "Our company is part of HiTop Group, a group of sister companies working together to deliver integrated technology and telecom solutions.",
+ 
+    "delta": {
+      "description": "Based in Dubai, UAE, this company is a leading cybersecurity provider across the GCC. Established in 2006, it delivers advanced IT security solutions with a strong focus on customer satisfaction, trusted partnerships, and successful projects for government and private sectors."
+    },
+ 
+    "primer": {
+      "description": "Providing comprehensive logistics solutions, including customs clearance, freight forwarding, and import/export documentation management, with air, sea, and ground transport options to ensure efficient and compliant international trade."
+    }
+  }
+
+}

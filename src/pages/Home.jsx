@@ -1,0 +1,35 @@
+import CanvasBackground from '../components/CanvasBackground/CanvasBackground';
+import Hero from '../Sections/Hero/Hero';
+import About from '../Sections/about/About';
+import Products from '../Sections/products/Products';
+import Services from '../Sections/services/Services';
+import Clients from '../Sections/clients/Clients';
+import Partners from '../Sections/partners/Partners';
+import Contact from '../Sections/contact/Contact';
+import Gallery from '../Sections/gallery/Gallery';
+import Feedback from '../Sections/feedback/Feedback';
+import Map from '../Sections/map/Map';
+import GroupCompanies from '../Sections/groupCompanies/groupCompanies';
+
+export default function Home() {
+  return (
+    <>
+      <CanvasBackground />
+      <main className="main-content">
+      
+        <Hero />
+        <About />
+        <Map/>
+        <GroupCompanies/>
+        <Partners />
+        <Products />
+        <Services />
+        
+        <Clients />
+        <Gallery />
+        <Feedback/>
+        <Contact />
+      </main>
+    </>
+  );
+}

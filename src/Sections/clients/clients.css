@@ -1,0 +1,201 @@
+.orbital-container {
+  position: relative;
+  width: 700px;
+  height: 550px;
+  margin: 80px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 60px var(--filter-shadow));
+}
+
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid var(--ring-boreder);
+  animation: ring-rotate var(--ring-speed, 20s) linear infinite;
+  pointer-events: none;
+}
+
+.orbital-ring-1 {
+  width: 300px;
+  height: 300px;
+  z-index: 2;
+}
+
+.orbital-ring-2 {
+  width: 500px;
+  height: 500px;
+  animation-direction: reverse;
+  z-index: 1;
+}
+
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.orbital-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  pointer-events: auto;
+}
+
+.orbital-ring-1 .orbital-item {
+  transform:
+    translate(-50%, -50%)
+    rotate(calc(360deg * var(--item-index) / var(--total-items)))
+    translate(150px)
+    rotate(calc(-360deg * var(--item-index) / var(--total-items)));
+}
+
+.orbital-ring-2 .orbital-item {
+  transform:
+    translate(-50%, -50%)
+    rotate(calc(360deg * var(--item-index) / var(--total-items)))
+    translate(250px)
+    rotate(calc(-360deg * var(--item-index) / var(--total-items)));
+}
+
+.client-orbital-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: var(--orbital--circle);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+  box-shadow:
+    0 6px 22px var(--vm-shadow-hover),
+    inset 0 2px 6px var(--box-shoadow);
+
+  pointer-events: auto;
+}
+
+.client-orbital-circle:hover {
+  transform: scale(1.15);
+  box-shadow:
+    0 10px 40px var(--orbital-circle1),
+    inset 0 2px 10px var(--orbital-circle2);
+}
+
+.client-logo {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px var(--Clientlogo--shadow));
+  pointer-events: none;
+}
+
+.client-name-overlay {
+  position: absolute;
+  top: -42px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+
+  background: var(--client--overlay); 
+  color: var(--white);
+
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px var(--Clientlogo--shadow); 
+}
+
+.client-orbital-circle:hover + .client-name-overlay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+@media (max-width: 768px) {
+  .orbital-container {
+    width: clamp(380px, 70vw, 500px);
+    height: clamp(380px, 70vw, 500px);
+  }
+
+  .orbital-ring-1 {
+    width: clamp(220px, 40vw, 260px);
+    height: clamp(220px, 40vw, 260px);
+  }
+
+  .orbital-ring-2 {
+    width: clamp(320px, 55vw, 380px);
+    height: clamp(320px, 55vw, 380px);
+  }
+
+  .orbital-ring-1 .orbital-item {
+    transform:
+      translate(-50%, -50%)
+      rotate(calc(360deg * var(--item-index) / var(--total-items)))
+      translate(clamp(110px, 20vw, 130px))
+      rotate(calc(-360deg * var(--item-index) / var(--total-items)));
+  }
+
+  .orbital-ring-2 .orbital-item {
+    transform:
+      translate(-50%, -50%)
+      rotate(calc(360deg * var(--item-index) / var(--total-items)))
+      translate(clamp(160px, 30vw, 190px))
+      rotate(calc(-360deg * var(--item-index) / var(--total-items)));
+  }
+}
+
+@media (max-width: 550px) {
+  .orbital-container {
+    width: clamp(300px, 90vw, 320px);
+    height: clamp(300px, 90vw, 320px);
+  }
+
+  .orbital-ring-1 {
+    width: clamp(160px, 55vw, 180px);
+    height: clamp(160px, 55vw, 180px);
+  }
+
+  .orbital-ring-2 {
+    width: clamp(230px, 75vw, 260px);
+    height: clamp(230px, 75vw, 260px);
+  }
+
+  .orbital-ring-1 .orbital-item {
+    transform:
+      translate(-50%, -50%)
+      rotate(calc(360deg * var(--item-index) / var(--total-items)))
+      translate(clamp(75px, 26vw, 90px))
+      rotate(calc(-360deg * var(--item-index) / var(--total-items)));
+  }
+
+  .orbital-ring-2 .orbital-item {
+    transform:
+      translate(-50%, -50%)
+      rotate(calc(360deg * var(--item-index) / var(--total-items)))
+      translate(clamp(110px, 36vw, 130px))
+      rotate(calc(-360deg * var(--item-index) / var(--total-items)));
+  }
+
+  .client-orbital-circle {
+    width: clamp(48px, 14vw, 52px);
+    height: clamp(48px, 14vw, 52px);
+  }
+
+  .client-logo {
+    width: 68%;
+    height: 68%;
+  }
+}

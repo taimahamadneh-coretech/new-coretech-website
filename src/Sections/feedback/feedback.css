@@ -1,0 +1,253 @@
+.feedback-section {
+  padding: 80px 20px;
+}
+
+.feedback-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feedback-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.feedback-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 16px;
+  letter-spacing: -0.5px;
+}
+
+.feedback-subtitle {
+  font-size: 1.125rem;
+  color: var(--white-soft);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.feedback-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  position: relative;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card {
+  background: var(--white);
+  padding: 32px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.testimonial-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.rating-value {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--black);
+}
+
+.stars {
+  color: var(--rating-stars);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+
+.testimonial-comment {
+  line-height: 1.7;
+  margin-bottom: 24px;
+  font-size: 1rem;
+  color: var(--black);
+  flex-grow: 1;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color, #eaeaea);
+}
+
+.author-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.author-name {
+  font-weight: 600;
+  color: var(--blue-dark);
+  font-size: 1rem;
+}
+
+.author-position {
+  font-size: 0.875rem;
+  color: var(--text-secondary, #666);
+}
+
+.carousel-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid var(--border-color, #eaeaea);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  color: var(--blue-dark);
+}
+
+.carousel-btn:hover {
+  background: var(--blue-deep);
+  color: var(--white);
+  border-color: var(--blue-deep);
+  transform: scale(1.05);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.carousel-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--white-soft);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.carousel-indicator:hover {
+  background: var(--white);
+  transform: scale(1.2);
+}
+
+.carousel-indicator.active {
+  background: var(--blue-deep);
+  transform: scale(1.2);
+}
+
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  
+  .carousel-btn-prev {
+    left: -60px;
+  }
+  
+  .carousel-btn-next {
+    right: -60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feedback-section {
+    padding: 60px 16px;
+  }
+  
+  .feedback-title {
+    font-size: 2rem;
+  }
+  
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .testimonial-card {
+    padding: 24px;
+  }
+  
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .carousel-btn-prev {
+    left: -20px;
+  }
+  
+  .carousel-btn-next {
+    right: -20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-btn {
+    position: static;
+    transform: none;
+    margin-top: 20px;
+  }
+  
+  .carousel-container {
+    flex-direction: column;
+  }
+  
+  .testimonials-grid {
+    order: 1;
+  }
+  
+  .carousel-buttons {
+    order: 2;
+    display: flex;
+    gap: 20px;
+  }
+}
