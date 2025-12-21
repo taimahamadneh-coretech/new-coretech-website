@@ -5,7 +5,7 @@ import video3 from '../../assets/videos/hero3.mp4';
 import './hero.css';
 import { useTranslation } from 'react-i18next';
 
-const videos = [video1, video2, video3];
+const videos = ["/videos/hero1.mp4", "/videos/hero2.mp4", "/videos/hero3.mp4"];
 
 function Hero() {
   const { t, i18n } = useTranslation();
@@ -55,16 +55,7 @@ function Hero() {
               onEnded={index === current ? handleEnded : null}
               className="hero-video"
             />
-            /*   <video
-                 key={index}
-                 ref={(el) => (videoRefs.current[index] = el)}
-                 src={video}
-                 muted
-                 playsInline
-                 autoPlay={index === 0}
-                 onEnded={index === current ? handleEnded : null}
-                 className="hero-video"
-               />*/
+
           ))}
         </div>
       </div>
