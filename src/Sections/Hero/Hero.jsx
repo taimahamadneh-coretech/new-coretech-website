@@ -1,11 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './hero.css';
 import { useTranslation } from 'react-i18next';
 
 const videos = [
-  "/videos/hero1.mp4",
-  "/videos/hero2.mp4",
-  "/videos/hero3.mp4"
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/hero1.mp4",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/hero2.mp4",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/hero3.mp4"
 ];
 
 function Hero() {
@@ -30,6 +30,16 @@ function Hero() {
     }, 700);
   };
 
+  useEffect(() => {
+    const currentVideo = videoRefs.current[current];
+    if (currentVideo) {
+      const playPromise = currentVideo.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    }
+  }, [current]);
+
   return (
     <section id="home" className="hero-section">
       <div className="video-slider">
@@ -45,15 +55,14 @@ function Hero() {
             <video
               key={index}
               ref={(el) => (videoRefs.current[index] = el)}
+              src={video}
               muted
               playsInline
+              preload="auto"
               autoPlay={index === 0}
               onEnded={index === current ? handleEnded : null}
               className="hero-video"
-            >
-              <source src={video} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            />
           ))}
         </div>
       </div>
