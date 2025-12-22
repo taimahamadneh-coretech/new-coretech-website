@@ -1,11 +1,12 @@
 import React, { useState, useRef } from 'react';
-import video1 from '../../assets/videos/hero1.mp4';
-import video2 from '../../assets/videos/hero2.mp4';
-import video3 from '../../assets/videos/hero3.mp4';
 import './hero.css';
 import { useTranslation } from 'react-i18next';
 
-const videos = ["/videos/hero1.mp4", "/videos/hero2.mp4", "/videos/hero3.mp4"];
+const videos = [
+  "/videos/hero1.mp4",
+  "/videos/hero2.mp4",
+  "/videos/hero3.mp4"
+];
 
 function Hero() {
   const { t, i18n } = useTranslation();
@@ -13,6 +14,7 @@ function Hero() {
   const videoRefs = useRef([]);
 
   const isRTL = i18n.dir() === 'rtl';
+
   const handleEnded = () => {
     const next = (current + 1) % videos.length;
     setCurrent(next);
@@ -21,19 +23,15 @@ function Hero() {
       const nextVideo = videoRefs.current[next];
       if (nextVideo) {
         const playPromise = nextVideo.play();
-
         if (playPromise !== undefined) {
-          playPromise.catch(() => {
-          });
+          playPromise.catch(() => {});
         }
       }
     }, 700);
   };
 
-
   return (
     <section id="home" className="hero-section">
-
       <div className="video-slider">
         <div
           className="video-track"
@@ -47,15 +45,15 @@ function Hero() {
             <video
               key={index}
               ref={(el) => (videoRefs.current[index] = el)}
-              src={video}
               muted
               playsInline
-              preload="auto"
               autoPlay={index === 0}
               onEnded={index === current ? handleEnded : null}
               className="hero-video"
-            />
-
+            >
+              <source src={video} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           ))}
         </div>
       </div>
@@ -76,7 +74,6 @@ function Hero() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }
