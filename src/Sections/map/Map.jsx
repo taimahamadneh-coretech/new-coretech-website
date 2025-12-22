@@ -21,7 +21,20 @@ const Map = () => {
     "Egypt",
     "China",
     "United Arab Emirates",
-    "Turkey"
+    "Turkey",
+    "Greece",
+    "Italy",
+    "Spain",
+    "Portugal",
+    "Latvia",
+    "Estonia",
+    "Lithuania",
+    "Saudi Arabia",
+    "Jordan",
+    "United Arab Emirates",
+    "South Africa",
+    "Qatar"
+
   ];
  useEffect(() => {
   const observer = new IntersectionObserver(
@@ -59,7 +72,7 @@ const Map = () => {
       <div className="section-header">
         <h2 className="section-title">{t('map.sub-title')}</h2>
       </div>
-      <div
+      <div 
         id="name"
         style={{
           top: tooltip.y - 50,
@@ -73,10 +86,6 @@ const Map = () => {
       <svg
         id="allSvg"
         viewBox="0 0 2000 857"
-        /*
-        fill="#ececec"
-        stroke="black" 
-        */
       >
         {mapPaths.map((country) =>
           country.paths.map((d, index) => {
@@ -97,7 +106,7 @@ const Map = () => {
                 }}
                 onMouseMove={(e) => {
                   setTooltip({
-                    x: e.clientY,
+                    x: e.clientX,
                     y: e.clientY
                   });
                 }}
