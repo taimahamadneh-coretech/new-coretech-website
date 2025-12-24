@@ -51,29 +51,31 @@ const Services = () => {
                 {service.description[lang]}
               </p>
 
-              <div className="service-offerings">
-                <h4>{t('services.offeredTitle')}</h4>
-                <ul className="service-list">
-                  {service.offerings.map((offering, idx) => (
-                    <li key={idx}>
-                      {offering[lang]}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {service.features && (
+              <div className="services-content-grid">
                 <div className="service-offerings">
-                  <h4>{t('services.featuresTitle')}</h4>
+                  <h4>{t('services.offeredTitle')}</h4>
                   <ul className="service-list">
-                    {service.features.map((feature, idx) => (
+                    {service.offerings.map((offering, idx) => (
                       <li key={idx}>
-                        {feature[lang]}
+                        {offering[lang]}
                       </li>
                     ))}
                   </ul>
                 </div>
-              )}
+
+                {service.features && (
+                  <div className="service-offerings">
+                    <h4>{t('services.featuresTitle')}</h4>
+                    <ul className="service-list">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx}>
+                          {feature[lang]}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
 
               {service.partners && (
                 <div className="service-partners">
