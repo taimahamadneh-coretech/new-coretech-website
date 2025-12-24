@@ -14,6 +14,22 @@ const heroVideos = [
   "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/hero3.mp4"
 ];
 
+const images = [
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image01.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image02.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image03.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image04.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image05.jpeg",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image06.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image07.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image08.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image09.jpg",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image10.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image11.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image12.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image13.png",
+  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image14.png",
+];
 function App() {
   const [loading, setLoading] = useState(() => {
     return !sessionStorage.getItem('loaderShown');
@@ -23,17 +39,24 @@ function App() {
 
   useEffect(() => {
     if (!sessionStorage.getItem('loaderShown')) {
-      setLoading(true);
-
+      // Preload videos
       heroVideos.forEach((src, index) => {
         const video = document.createElement('video');
         video.src = src;
         video.preload = 'auto';
-        video.muted = true; 
+        video.muted = true;
+        video.load(); // start preloading
         videosRef.current[index] = video;
+      });
+
+      // Preload images
+      images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
       });
     }
   }, []);
+
 
   const [showScrollTop, setShowScrollTop] = useState(false);
 
