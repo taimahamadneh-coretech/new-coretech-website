@@ -133,31 +133,6 @@ services: [
       { en: "Data and Email Backup", ar: "نسخ احتياطي للبيانات والبريد الإلكتروني" }
     ],
     partners: ["Malwarebytes", "Kaspersky", "SolarWinds", "Palo Alto Networks", "Stratodesk", "Trend Micro"]
-  },
-  {
-    category: {
-      en: "Software Development & AI",
-      ar: "تطوير البرمجيات والذكاء الاصطناعي"
-    },
-    provider: "LunaPact Technologies",
-    website: "https://lunapact.com/",
-    logo: lunapactLogo,
-    description: {
-      en: "Digital transformation and AI-driven solutions across Government, Healthcare, Education, Oil & Gas, Retail, Telecom, and SMEs.",
-      ar: "حلول التحول الرقمي والذكاء الاصطناعي للقطاع الحكومي، والرعاية الصحية، والتعليم، والنفط والغاز، وتجارة التجزئة، والاتصالات، والشركات الصغيرة والمتوسطة."
-    },
-    offerings: [
-      { en: "Digital transformation & business process automation", ar: "التحول الرقمي وأتمتة العمليات" },
-      { en: "Data analytics, dashboards & visualization", ar: "تحليل البيانات ولوحات المعلومات" },
-      { en: "Artificial intelligence & machine learning solutions", ar: "حلول الذكاء الاصطناعي وتعلم الآلة" },
-      { en: "Security audits & vulnerability assessments", ar: "التدقيق الأمني وتقييم الثغرات" },
-      { en: "Digital customer experience platforms", ar: "منصات تجربة العملاء الرقمية" }
-    ],
-    features: [
-      { en: "Performance management & KPI monitoring platforms", ar: "منصات إدارة الأداء ومراقبة المؤشرات" },
-      { en: "Sales enablement tools", ar: "أدوات تمكين المبيعات" },
-      { en: "AI-driven hospital management systems", ar: "أنظمة إدارة المستشفيات المدعومة بالذكاء الاصطناعي" }
-    ]
   }
 ],
   
