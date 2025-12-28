@@ -164,7 +164,7 @@ const Contact = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
 
-      showPopup('error', t('contact.alertValidationError'));
+      showPopup('error', t('contact.alertError'));
       return;
     }
 
