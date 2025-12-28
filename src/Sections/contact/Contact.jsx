@@ -1,11 +1,76 @@
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { companyData } from '../../data/companyData';
 import './contact.css';
 import { useTranslation } from 'react-i18next';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 
+const FormPopup = ({ isOpen, type, message, onClose }) => {  
+  useEffect(() => {
+    if (isOpen) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 5000); 
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const getPopupStyles = () => {
+    switch (type) {
+      case 'success':
+        return {
+          bgColor: 'var(--success-bg, #d4edda)',
+          borderColor: 'var(--success-border, #c3e6cb)',
+          textColor: 'var(--success-text, #155724)',
+          icon: '✓'
+        };
+      case 'error':
+        return {
+          bgColor: 'var(--error-bg, #f8d7da)',
+          borderColor: 'var(--error-border, #f5c6cb)',
+          textColor: 'var(--error-text, #721c24)',
+          icon: '✗'
+        };
+      default:
+        return {
+          bgColor: 'var(--info-bg, #d1ecf1)',
+          borderColor: 'var(--info-border, #bee5eb)',
+          textColor: 'var(--info-text, #0c5460)',
+          icon: 'ℹ'
+        };
+    }
+  };
+
+  const styles = getPopupStyles();
+
+  return (
+    <div className="popup-overlay" onClick={onClose}>
+      <div 
+        className="popup-content"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          backgroundColor: styles.bgColor,
+          border: `2px solid ${styles.borderColor}`,
+          color: styles.textColor
+        }}
+      >
+        <button className="popup-close" onClick={onClose}>×</button>
+        <div className="popup-icon" style={{ color: styles.textColor }}>
+          {styles.icon}
+        </div>
+        <div className="popup-message">{message}</div>
+        <div className="popup-progress">
+          <div 
+            className="popup-progress-bar"
+            style={{ backgroundColor: styles.textColor }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -25,6 +90,11 @@ const Contact = () => {
 
   const [errors, setErrors] = useState({});
   const [phoneError, setPhoneError] = useState('');
+  const [popup, setPopup] = useState({
+    isOpen: false,
+    type: '',
+    message: ''
+  });
 
   const handleChange = (e) => {
     setFormData({
@@ -71,12 +141,30 @@ const Contact = () => {
     return newErrors;
   };
 
+  const showPopup = (type, message) => {
+    setPopup({
+      isOpen: true,
+      type,
+      message
+    });
+  };
+
+  const closePopup = () => {
+    setPopup({
+      isOpen: false,
+      type: '',
+      message: ''
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
+
+      showPopup('error', t('contact.alertValidationError'));
       return;
     }
 
@@ -97,126 +185,133 @@ const Contact = () => {
         });
         setErrors({});
         setPhoneError('');
-        alert(t('contact.alertSuccess'));
+        showPopup('success', t('contact.alertSuccess'));
       } else {
-        alert(t('contact.alertError'));
+        showPopup('error', t('contact.alertError'));
       }
     } catch {
-      alert(t('contact.alertNetworkError'));
+      showPopup('error', t('contact.alertNetworkError'));
     }
   };
 
   return (
-    <section id="contact" className="section contact-section">
-      <div className="section-container">
-        <div className="section-header">
-          <h2 className="section-title">{t('contact.sectionTitle')}</h2>
-          <p className="section-subtitle">{t('contact.sectionSubtitle')}</p>
-        </div>
+    <>
+      <FormPopup
+        isOpen={popup.isOpen}
+        type={popup.type}
+        message={popup.message}
+        onClose={closePopup}
+      />
 
-        <div className="contact-content">
-          <div className="contact-info">
-            <h3>{t('contact.infoTitle')}</h3>
-            <div className="contact-details">
-              <p>
-                <strong>{t('contact.emailLabel')}</strong> {companyData.email}
-              </p>
-              <p>
-                <strong>{t('contact.addressLabel')}</strong> {t('company.address')}
-              </p>
-            </div>
-            <div className="contact-persons">
-              {companyData.contacts.map((contact, index) => (
-                <div key={index} className="contact-person">
-                  <h4>{contact.name}</h4>
-                  <p>{contact.position}</p>
-                  <p>
-                    <strong>{t('contact.phoneLabel')}</strong> {contact.phone}
-                  </p>
-                  <p>
-                    <strong>{t('contact.emailLabel')}</strong> {contact.email}
-                  </p>
-                </div>
-              ))}
-            </div>
+      <section id="contact" className="section contact-section">
+        <div className="section-container">
+          <div className="section-header">
+            <h2 className="section-title">{t('contact.sectionTitle')}</h2>
+            <p className="section-subtitle">{t('contact.sectionSubtitle')}</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="contact-form" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
-            <h3>{t('contact.formTitle')}</h3>
-
-            <div className="form-group">
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className={`form-input ${errors.name ? 'error' : ''}`}
-                placeholder={t('contact.form.name')}
-              />
-              {errors.name && <span className="error-message">{errors.name}</span>}
+          <div className="contact-content">
+            <div className="contact-info">
+              <h3>{t('contact.infoTitle')}</h3>
+              <div className="contact-details">
+                <p>
+                  <strong>{t('contact.emailLabel')}</strong> {companyData.email}
+                </p>
+                <p>
+                  <strong>{t('contact.addressLabel')}</strong> {t('company.address')}
+                </p>
+              </div>
+              <div className="contact-persons">
+                {companyData.contacts.map((contact, index) => (
+                  <div key={index} className="contact-person">
+                    <h4>{contact.name}</h4>
+                    <p>{contact.position}</p>
+                    <p>
+                      <strong>{t('contact.phoneLabel')}</strong> {contact.phone}
+                    </p>
+                    <p>
+                      <strong>{t('contact.emailLabel')}</strong> {contact.email}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="form-group">
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className={`form-input ${errors.email ? 'error' : ''}`}
-                placeholder={t('contact.form.email')}
-              />
-              {errors.email && <span className="error-message">{errors.email}</span>}
-            </div>
+            <form onSubmit={handleSubmit} className="contact-form" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
+              <h3>{t('contact.formTitle')}</h3>
 
-            <div className="form-group">
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`form-input ${errors.name ? 'error' : ''}`}
+                  placeholder={t('contact.form.name')}
+                />
+                {errors.name && <span className="error-message">{errors.name}</span>}
+              </div>
 
-              <PhoneInput
-                international
-                defaultCountry={countryByLang[i18n.language] || 'US'}
-                value={formData.phone}
-                onChange={handlePhoneChange}
-                placeholder={t('contact.form.phone')}
-                className={`phone-wrapper ${errors.phone ? 'error' : ''} form-input`}
-                countrySelectProps={{
-                  unicodeFlags: true
-                }}
-              />
+              <div className="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`form-input ${errors.email ? 'error' : ''}`}
+                  placeholder={t('contact.form.email')}
+                />
+                {errors.email && <span className="error-message">{errors.email}</span>}
+              </div>
 
-              {(errors.phone || phoneError) && (
-                <span className="error-message">{errors.phone || phoneError}</span>
-              )}
-            </div>
+              <div className="form-group">
+                <PhoneInput
+                  international
+                  defaultCountry={countryByLang[i18n.language] || 'US'}
+                  value={formData.phone}
+                  onChange={handlePhoneChange}
+                  placeholder={t('contact.form.phone')}
+                  className={`phone-wrapper ${errors.phone ? 'error' : ''} form-input`}
+                  countrySelectProps={{
+                    unicodeFlags: true
+                  }}
+                />
+                {(errors.phone || phoneError) && (
+                  <span className="error-message">{errors.phone || phoneError}</span>
+                )}
+              </div>
 
-            <div className="form-group">
-              <input
-                type="text"
-                name="subject"
-                value={formData.subject}
-                onChange={handleChange}
-                className={`form-input ${errors.subject ? 'error' : ''}`}
-                placeholder={t('contact.form.subject')}
-              />
-              {errors.subject && <span className="error-message">{errors.subject}</span>}
-            </div>
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className={`form-input ${errors.subject ? 'error' : ''}`}
+                  placeholder={t('contact.form.subject')}
+                />
+                {errors.subject && <span className="error-message">{errors.subject}</span>}
+              </div>
 
-            <div className="form-group">
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                className={`form-textarea ${errors.message ? 'error' : ''}`}
-                placeholder={t('contact.form.message')}
-              />
-              {errors.message && <span className="error-message">{errors.message}</span>}
-            </div>
+              <div className="form-group">
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  className={`form-textarea ${errors.message ? 'error' : ''}`}
+                  placeholder={t('contact.form.message')}
+                />
+                {errors.message && <span className="error-message">{errors.message}</span>}
+              </div>
 
-            <button type="submit" className="form-submit">
-              {t('contact.form.submit')}
-            </button>
-          </form>
+              <button type="submit" className="form-submit">
+                {t('contact.form.submit')}
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
