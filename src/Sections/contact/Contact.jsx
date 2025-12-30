@@ -211,32 +211,6 @@ const Contact = () => {
           </div>
 
           <div className="contact-content">
-            <div className="contact-info">
-              <h3>{t('contact.infoTitle')}</h3>
-              <div className="contact-details">
-                <p>
-                  <strong>{t('contact.emailLabel')}</strong> {companyData.email}
-                </p>
-                <p>
-                  <strong>{t('contact.addressLabel')}</strong> {t('company.address')}
-                </p>
-              </div>
-              <div className="contact-persons">
-                {companyData.contacts.map((contact, index) => (
-                  <div key={index} className="contact-person">
-                    <h4>{contact.name}</h4>
-                    <p>{contact.position}</p>
-                    <p>
-                      <strong>{t('contact.phoneLabel')}</strong> {contact.phone}
-                    </p>
-                    <p>
-                      <strong>{t('contact.emailLabel')}</strong> {contact.email}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <form onSubmit={handleSubmit} className="contact-form" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
               <h3>{t('contact.formTitle')}</h3>
 
