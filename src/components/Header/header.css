@@ -111,7 +111,7 @@
   .bar {
     width: 25px;
     height: 2px;
-    background: #fff;
+    background: var(--white);
     transition: 0.3s;
   }
   
@@ -126,7 +126,7 @@
     width: 100%;
     padding: 10px;
     background: var(--mobile-menu-gradient);
-    color: #fff;
+    color: var(--white);
     border: none;
     border-radius: 8px;
   }
