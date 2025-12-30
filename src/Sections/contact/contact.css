@@ -1,58 +1,23 @@
 .contact-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 50px;
+  display: flex;
+  justify-content: center;
   margin-top: 40px;
 }
 
-.contact-info,
 .contact-form {
+   max-width: 780px; 
+  width: 100%;
   background: var(--vm-card-bg);
   border-radius: 16px;
-  padding: 30px;
+  padding: 40px;
   border: 1px solid var(--vm-card-border);
   box-shadow: 0 10px 30px var(--form-shadow);
 }
 
-.contact-info h3,
 .contact-form h3 {
   color: var(--blue-deep);
   margin-bottom: 20px;
   font-size: 1.5rem;
-}
-
-.contact-details {
-  margin-bottom: 30px;
-}
-
-.contact-details p {
-  color: var(--black);
-  margin-bottom: 10px;
-  line-height: 1.6;
-}
-
-.contact-persons {
-  display: grid;
-  gap: 20px;
-}
-
-.contact-person {
-  background: var(--grey--shadow1);
-  border-radius: 12px;
-  padding: 20px;
-  border: 1px solid var(--grey--shadow2);
-}
-
-.contact-person h4 {
-  color: var(--blue-dark);
-  margin-bottom: 5px;
-  font-size: 1.2rem;
-}
-
-.contact-person p {
-  color: var(--black);
-  margin-bottom: 5px;
-  font-size: 0.9rem;
 }
 
 .form-group {
@@ -69,20 +34,20 @@
   border-radius: 8px;
 
   font-size: 16px;
-  color: #0F172A;
+  color: var(--phone--input);
 
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: #64748B;
+  color: var(--phone--arrow);
 }
 
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #3FA9F5;
+  border-color: var(--blue-main);
   box-shadow: 0 0 0 3px rgba(63, 169, 245, 0.2);
 }
 
@@ -92,7 +57,7 @@
 }
 
 .form-submit {
-  background: linear-gradient(135deg, #6EC1FF, var(--blue-deep));
+  background: linear-gradient(135deg, var(--blue-light), var(--blue-deep));
   border: none;
   padding: 12px 32px;
   border-radius: 50px;
@@ -297,18 +262,6 @@
   100% {
     transform: scaleX(0);
   }
-}
-
-:root {
-  --success-bg: #d4edda;
-  --success-border: #c3e6cb;
-  --success-text: #155724;
-  --error-bg: #f8d7da;
-  --error-border: #f5c6cb;
-  --error-text: #721c24;
-  --info-bg: #d1ecf1;
-  --info-border: #bee5eb;
-  --info-text: #0c5460;
 }
 
 .error-message {
