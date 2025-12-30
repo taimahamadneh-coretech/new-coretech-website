@@ -3,6 +3,7 @@
   --blue-deep: #1E7FE6; 
   --blue-main: #3FA9F5;
   --blue-light: #6EC1FF;
+  --ice-blue: #6ef1ff;
 
   --white: #FFFFFF;
   --white-soft: #EAF4FF;
@@ -69,6 +70,8 @@
 
   --grey--shadow1: rgba(255, 255, 255, 0.45);
   --grey--shadow2: rgba(110, 193, 255, 0.25);
+  --grey--shadow3: rgba(255,255,255,0.1);
+  --grey--shadow4:rgba(255,255,255,0.08);
   --blue--shadow:rgba(63, 169, 245, 0.2);
   --phone--input: #0F172A;
   --phone--arrow:#64748B;
@@ -79,6 +82,24 @@
   --hero-subtitle:#EFECE3;
   --hero-overrelay1:rgba(0, 0, 0, 0.7);
   --hero-overrelay2:rgba(39, 90, 126, 0.5);
+
+   --purple: #7c67ff;
+  --purple-main: #8da9ff;
+  --purple-light: #a0c8ff;
+  --pink: #ff6ec7;
+
+   --error-text: #721c24;
+  
+  --open-posisions-background: #f9fafb;
+  --careers-blue:#2563eb;
+  --careers-blue1:#1e40af;
+  --careers-blue2:#1e3a8a;
+  --careers-grey-shadow:#6b7280;
+  --careers-black-shadow:rgba(0,0,0,0.5);
+  --careers-black-shadow1:rgba(0,0,0,0.1);
+
+
+
 }
 
 * {

@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../../assets/logo/logo_white.png';
 import './footer.css';
 import { useTranslation } from 'react-i18next';
-
+ 
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -11,10 +11,10 @@ import {
   FaGlobe,
   FaPhoneAlt,
 } from 'react-icons/fa';
-
+ 
 function Footer() {
   const { t } = useTranslation();
-
+ 
   const socialMediaLinks = [
     {
       name: 'Facebook',
@@ -32,7 +32,7 @@ function Footer() {
     //   url: 'https://instagram.com/coretechpal',
     // },
   ];
-
+ 
   const quickLinks = [
     { key: 'home', href: '#home' },
     { key: 'about', href: '#about' },
@@ -40,21 +40,23 @@ function Footer() {
     { key: 'services', href: '#services' },
     { key: 'clients', href: '#clients' },
     { key: 'contact', href: '#contact' },
+    { key: 'career', href: '/careers' },
+   
   ];
-
+ 
   return (
     <footer className="footer section">
       <div className="footer-container">
-
+ 
         <div className="footer-column footer-brand">
           <div className="footer-logo">
             <img src={logo} alt="Coretech Logo" />
           </div>
-
+ 
           <p className="footer-description">
             {t('footer.description')}
           </p>
-
+ 
           <div className="social-icons">
             {socialMediaLinks.map((social) => {
               const Icon = social.icon;
@@ -73,7 +75,7 @@ function Footer() {
             })}
           </div>
         </div>
-
+ 
         <div className="footer-column">
           <h3 className="footer-title">{t('footer.quickLinks.title')}</h3>
           <ul className="footer-links">
@@ -86,7 +88,7 @@ function Footer() {
             ))}
           </ul>
         </div>
-
+ 
         <div className="footer-column">
           <h3 className="footer-title">{t('footer.services.title')}</h3>
           <ul className="footer-links">
@@ -96,37 +98,37 @@ function Footer() {
             <li><a href="#services">{t('footer.services.cloud')}</a></li>
             <li><a href="#services">{t('footer.services.consulting')}</a></li>
           </ul>
-
+ 
         </div>
-
+ 
         <div className="footer-column">
           <h3 className="footer-title">{t('footer.contact.title')}</h3>
-
+ 
           <div className="contact-details">
             <div className="contact-item">
               <FaMapMarkerAlt />
               <p>{t('footer.contact.address')}</p>
             </div>
-
+ 
             <div className="contact-item">
               <FaEnvelope />
               <p>{t('footer.contact.email')}</p>
             </div>
-
+ 
             <div className="contact-item">
               <FaGlobe />
               <p>{t('footer.contact.website')}</p>
             </div>
-
+ 
             <div className="contact-item">
               <FaPhoneAlt />
               <p>{t('footer.contact.phone')}</p>
             </div>
           </div>
-        </div> 
-
+        </div>
+ 
       </div>
-
+ 
       <div className="footer-bottom">
         <p className="footer-copy">
           © {new Date().getFullYear()} {t('footer.copyright')}
@@ -135,5 +137,6 @@ function Footer() {
     </footer>
   );
 }
-
+ 
 export default React.memo(Footer);
+ 

@@ -1,5 +1,4 @@
 import deltaLogo from "../assets/icons/partners/delta.png";
-import lunapactLogo from "../assets/icons/partners/lunapact.png";
 
 export const companyData = {
  companyName: "Coretech",

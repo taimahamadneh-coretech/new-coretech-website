@@ -35,7 +35,7 @@ const Header = () => {
     { label: t('nav.services'), href: '#services', type: 'anchor' },
     { label: t('nav.clients'), href: '#clients', type: 'anchor' },
     { label: t('nav.contact'), href: '#contact', type: 'anchor' },
-  ];
+   /* { label: t('nav.career'), to: '/careers', type: 'route' }, */ ];
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);

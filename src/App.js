@@ -5,6 +5,7 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Loader from './components/Loader/Loader';
 import Home from './pages/Home';
+import Careers from './pages/careers/Career';
 
 import './styles/global.css';
 
@@ -39,17 +40,15 @@ function App() {
 
   useEffect(() => {
     if (!sessionStorage.getItem('loaderShown')) {
-      // Preload videos
       heroVideos.forEach((src, index) => {
         const video = document.createElement('video');
         video.src = src;
         video.preload = 'auto';
         video.muted = true;
-        video.load(); // start preloading
+        video.load(); 
         videosRef.current[index] = video;
       });
 
-      // Preload images
       images.forEach((src) => {
         const img = new Image();
         img.src = src;
@@ -88,6 +87,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+{/*         <Route path="/careers" element={<Careers />} />*/}
       </Routes>
       <Footer />
 

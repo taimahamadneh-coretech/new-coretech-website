@@ -16,7 +16,9 @@
       "products": "Products",
       "services": "Services",
       "clients": "Clients",
-      "contact": "Contact"
+      "contact": "Contact",
+      "career":"Careers"
+
     },
     "services": {
       "title": "Our Services",
@@ -155,6 +157,82 @@
  
     "primer": {
       "description": "Providing comprehensive logistics solutions, including customs clearance, freight forwarding, and import/export documentation management, with air, sea, and ground transport options to ensure efficient and compliant international trade."
+    }
+  },
+  
+  "careers": {
+    "title": "Careers",
+    "subtitle": "Join our team and help us build amazing products.",
+    "openPositions": "Open Positions",
+    "applyNow": "Apply Now",
+    "applyFor": "Apply for: {{job}}",
+    "applicationSuccess": "Application for {{job}} submitted successfully!",
+    "applicationFailed": "Failed to submit. Please try again later.",
+    "applicationError": "An error occurred. Please try again later.",
+    "salesExecutive": "Sales Executive",
+    "remote": "Remote",
+    "contract": "Contract",
+    "salesDescription": "Responsible for identifying new business opportunities, building strong relationships with clients, presenting products and services, negotiating contracts, and achieving sales targets.",
+    "requiredField": "This field is required",
+    "invalidEmail": "Invalid email",
+    "invalidPhone": "Phone must start with 05 and be 10 digits",
+    "invalidTawjihi": "0–100, max 2 decimals",
+    "invalidUniversityGpa": "0–4, max 2 decimals",
+    "invalidNumber": "Must be a number",
+    "cannotBeEmpty": "Cannot be empty",
+    "tab": { "personal": "Personal", "education": "Education", "experience": "Experience", "skills": "Skills" },
+    "firstName": "First Name *",
+    "lastName": "Last Name *",
+    "email": "Email *",
+    "mobile": "Phone (05XXXXXXXX)",
+    "country": "Country *",
+    "city": "City *",
+    "tawjihiGpa": "Tawjihi GPA (0–100)",
+    "universityGpa": "University GPA (0–4)",
+    "qualificationLevel": "Qualification Level *",
+    "bachelor": "Bachelor",
+    "master": "Master",
+    "phd": "PhD",
+    "experienceYears": "Years of Experience *",
+    "employer": "Employer",
+    "currentSalary": "Current Salary",
+    "jobTitle": "Job Title",
+    "skills": "Skills",
+    "skill": "Skill",
+    "addSkill": "Add Skill",
+    "languages": "Languages",
+    "language": "Language",
+    "addLanguage": "Add Language",
+    "back": "Back",
+    "next": "Next",
+    "submitting": "Submitting...",
+    "submitApplication": "Submit Application",
+    "applicationSuccessForm": "Application submitted successfully 🎉",
+    "applicationFailedForm": "Submission failed. Please try again.",
+    "networkError": "Network error. Please try again.",
+    "ok": "OK",
+    "occupationName": "Occupation / Degree Name",
+    "addDegree": "Add Degree"
+  },
+  "game": {
+    "titleSub": "Gaming Innovation",
+    "title": "Game Development Department",
+    "description": "We're crafting an extraordinary gaming experience. Get ready for innovative gameplay, stunning visuals, and immersive worlds.",
+    "progress": {
+      "label": "System Initialization",
+      "percent": "75%",
+      "comingSoon": "Coming Soon 2026"
+    },
+    "items": {
+      "monitor": "Monitor",
+      "dashboard": "Dashboard",
+      "farm": "Farm",
+      "laptop": "Laptop",
+      "robot": "Robot",
+      "gear": "Gear",
+      "controller": "Controller",
+      "rocket": "Rocket",
+      "bulb": "Idea"
     }
   }
 
