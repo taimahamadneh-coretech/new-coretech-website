@@ -1,4 +1,5 @@
 import './UICard.css';
+import React from "react";
 
 const Card = ({ children, className = '', hover = false }) => {
   return (
