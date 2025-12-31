@@ -35,7 +35,6 @@ const menuItems = [
   { label: t('nav.contact'), hash: 'contact', type: 'anchor' },
   { label: t('nav.career'), to: '/careers', type: 'route' },
 ];
-
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
