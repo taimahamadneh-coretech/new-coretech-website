@@ -1,9 +1,9 @@
 import React, {useEffect , useState } from "react";
 import './careers.css';
-import CareerForm from './CareerForm'; 
+import CareerForm from './CareerForm';
 import CanvasBackground from "../../components/CanvasBackground/CanvasBackground";
 import { useTranslation } from "react-i18next";
-
+ 
 export default function Careers() {
   const { t,i18n } = useTranslation();
   const [showForm, setShowForm] = useState(false);
@@ -11,7 +11,7 @@ export default function Careers() {
     useEffect(() => {
     document.body.dir = i18n.language === "ar" ? "rtl" : "ltr";
   }, [i18n.language]);
-
+ 
   const openings = [
     {
       title: t("careers.salesExecutive"),
@@ -20,17 +20,17 @@ export default function Careers() {
       description: t("careers.salesDescription")
     }
   ];
-
+ 
   const handleApply = (job) => {
     setSelectedJob(job);
     setShowForm(true);
   };
-
+ 
   const handleCloseForm = () => {
     setShowForm(false);
     setSelectedJob(null);
   };
-
+ 
   const handleFormSubmit = async (formData) => {
     try {
       const formspreeURL = "https://formspree.io/f/xqargeeg";
@@ -39,7 +39,7 @@ export default function Careers() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
       });
-
+ 
       if (response.ok) {
         alert(t("careers.applicationSuccess", { job: selectedJob.title }));
       } else {
@@ -52,7 +52,7 @@ export default function Careers() {
       handleCloseForm();
     }
   };
-
+ 
   return (
     <>
       <CanvasBackground/>
@@ -61,10 +61,10 @@ export default function Careers() {
           <h1>{t("careers.title")}</h1>
           <p>{t("careers.subtitle")}</p>
         </header>
-
+ 
         <section className="careers-openings">
           <h2>{t("careers.openPositions")}</h2>
-
+ 
           <div className="careers-job-list">
             {openings.map((job, index) => (
               <div className="careers-job-card" key={index}>
@@ -73,7 +73,7 @@ export default function Careers() {
                   {job.location} • {job.type}
                 </p>
                 <p className="careers-job-description">{job.description}</p>
-
+ 
                 <button className="careers-apply-btn" onClick={() => handleApply(job)}>
                   {t("careers.applyNow")}
                 </button>
@@ -81,7 +81,7 @@ export default function Careers() {
             ))}
           </div>
         </section>
-
+ 
         {showForm && selectedJob && (
           <div className="careers-form-overlay">
             <div className="careers-form-popup">
@@ -91,10 +91,10 @@ export default function Careers() {
                   &times;
                 </button>
               </div>
-              
+             
               <div className="careers-popup-content">
-                <CareerForm 
-                  onSubmit={handleFormSubmit} 
+                <CareerForm
+                  onSubmit={handleFormSubmit}
                   onCancel={handleCloseForm}
                   jobTitle={selectedJob.title}
                 />
