@@ -1,5 +1,7 @@
 import React from 'react';
 import logo from '../../assets/logo/logo_white.png';
+import { useNavigate, useLocation } from 'react-router-dom';
+ 
 import './footer.css';
 import { useTranslation } from 'react-i18next';
  
@@ -14,6 +16,8 @@ import {
  
 function Footer() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+const location = useLocation();
  
   const socialMediaLinks = [
     {
@@ -32,18 +36,29 @@ function Footer() {
     //   url: 'https://instagram.com/coretechpal',
     // },
   ];
+  
+ const quickLinks = [
+  { key: 'home', hash: 'home' },
+  { key: 'about', hash: 'about' },
+  { key: 'products', hash: 'products' },
+  { key: 'services', hash: 'services' },
+  { key: 'clients', hash: 'clients' },
+  { key: 'contact', hash: 'contact' },
+  { key: 'career', path: '/careers' },
+];
+const handleFooterLink = (hash) => {
+  if (location.pathname !== '/') {
+    navigate('/');
  
-  const quickLinks = [
-    { key: 'home', href: '#home' },
-    { key: 'about', href: '#about' },
-    { key: 'products', href: '#products' },
-    { key: 'services', href: '#services' },
-    { key: 'clients', href: '#clients' },
-    { key: 'contact', href: '#contact' },
-    { key: 'career', href: '/careers' },
-   
-  ];
- 
+    setTimeout(() => {
+      const el = document.getElementById(hash);
+      el?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  } else {
+    const el = document.getElementById(hash);
+    el?.scrollIntoView({ behavior: 'smooth' });
+  }
+};
   return (
     <footer className="footer section">
       <div className="footer-container">
@@ -76,18 +91,29 @@ function Footer() {
           </div>
         </div>
  
-        <div className="footer-column">
-          <h3 className="footer-title">{t('footer.quickLinks.title')}</h3>
-          <ul className="footer-links">
-            {quickLinks.map((link) => (
-              <li key={link.key}>
-                <a href={link.href}>
-                  {t(`footer.quickLinks.${link.key}`)}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+<div className="footer-column">
+  <h3 className="footer-title">{t('footer.quickLinks.title')}</h3>
+ 
+  <ul className="footer-links">
+    {quickLinks.map((link) => (
+      <li key={link.key}>
+        {link.path ? (
+          <a href={link.path}>
+            {t(`footer.quickLinks.${link.key}`)}
+          </a>
+        ) : (
+          <a
+            href={`/#${link.hash}`}
+            onClick={(e) => handleFooterLink(e, link.hash)}
+          >
+            {t(`footer.quickLinks.${link.key}`)}
+          </a>
+        )}
+      </li>
+    ))}
+  </ul>
+</div>
+ 
  
         <div className="footer-column">
           <h3 className="footer-title">{t('footer.services.title')}</h3>
@@ -139,4 +165,3 @@ function Footer() {
 }
  
 export default React.memo(Footer);
- 
