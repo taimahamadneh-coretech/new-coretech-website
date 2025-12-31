@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { companyData } from '../../data/companyData';
 import './contact.css';
 import { useTranslation } from 'react-i18next';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
