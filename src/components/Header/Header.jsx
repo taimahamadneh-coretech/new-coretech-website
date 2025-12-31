@@ -7,7 +7,7 @@ import logo from '../../assets/logo/logo_white.png';
 import { useTranslation } from 'react-i18next';
 import enFlag from '../../assets/icons/language/en.png';
 import arFlag from '../../assets/icons/language/ar.png';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation ,useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -15,6 +15,7 @@ const Header = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
 
   useEffect(() => {
@@ -27,15 +28,16 @@ const Header = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const menuItems = [
-    { label: t('nav.home'), to: '/', type: 'route' },
-    { label: t('nav.about'), href: '#about', type: 'anchor' },
-    { label: t('nav.partners'), href: '#partners', type: 'anchor' },
-    { label: t('nav.products'), href: '#products', type: 'anchor' },
-    { label: t('nav.services'), href: '#services', type: 'anchor' },
-    { label: t('nav.clients'), href: '#clients', type: 'anchor' },
-    { label: t('nav.contact'), href: '#contact', type: 'anchor' },
-   /* { label: t('nav.career'), to: '/careers', type: 'route' }, */ ];
+const menuItems = [
+  { label: t('nav.home'), to: '/', type: 'route' },
+  { label: t('nav.about'), hash: 'about', type: 'anchor' },
+  { label: t('nav.partners'), hash: 'partners', type: 'anchor' },
+  { label: t('nav.products'), hash: 'products', type: 'anchor' },
+  { label: t('nav.services'), hash: 'services', type: 'anchor' },
+  { label: t('nav.clients'), hash: 'clients', type: 'anchor' },
+  { label: t('nav.contact'), hash: 'contact', type: 'anchor' },
+  { label: t('nav.career'), to: '/careers', type: 'route' },
+];
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
@@ -84,14 +86,14 @@ const Header = () => {
                 );
               }
               return (
-                <a
-                  key={index}
-                  href={isHome ? item.href : `/${item.href}`}
-                  className="nav-link"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
+<a
+  key={index}
+  href={`/#${item.hash}`}
+  className="nav-link"
+  onClick={(e) => handleNavAnchorClick(e, item.hash)}
+>
+  {item.label}
+</a>
               );
             })}
 
