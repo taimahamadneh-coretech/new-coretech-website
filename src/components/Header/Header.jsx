@@ -1,6 +1,3 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import './header.css';
 import logo from '../../assets/logo/logo_white.png';
