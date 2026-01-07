@@ -11,6 +11,7 @@ import Feedback from '../Sections/feedback/Feedback';
 import Map from '../Sections/map/Map';
 import GroupCompanies from '../Sections/groupCompanies/groupCompanies';
 import Games from '../Sections/games/game'
+import FeaturedPartnersCardLayout from '../Sections/FeaturedPartnrt/FeaturedPartnrt';
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <About />
         <Map/>
         <GroupCompanies/>
+        <FeaturedPartnersCardLayout />
         <Partners />
         <Products />
         <Services />

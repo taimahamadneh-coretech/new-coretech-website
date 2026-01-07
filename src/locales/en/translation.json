@@ -59,8 +59,8 @@
     "sectionSubtitle": "Trusted by leading organizations across sectors"
   },
   "partners": {
-    "sectionTitle": "Our Partners",
-    "sectionSubtitle": "Trusted partnerships that drive innovation and growth"
+    "sectionTitle": "Brands We Serve",
+    "sectionSubtitle": "Trusted partners powering our solutions and success."
   },
   "products": {
     "sectionTitle": "Our Products",
@@ -292,6 +292,28 @@
       "controller": "Controller",
       "rocket": "Rocket",
       "bulb": "Idea"
+    }
+  },
+  "Featuredpartners": {
+    "sectionTitle": "Our partners",
+    "sectionSubtitle": "Trusted partners powering our solutions and success.",
+    "hytera": {
+      "name": "Hytera",
+      "slides": [
+        "Hytera Body Cameras deliver reliable video evidence solutions backed by over 32 years of public safety experience.",
+        "High-definition body-worn cameras designed to capture critical moments, enhance transparency, and protect both officers and organizations.",
+        "One-stop Digital Evidence Management enables secure upload, storage, retrieval, and investigation of video evidence.",
+        "More than a camera – live streaming, real-time location, and push-to-talk communication connect the field with the command center."
+      ]
+    },
+    "jaudaKoks": {
+      "name": "Jauda Koks",
+      "slides": [
+        "Jauda-Koks LTD – A Latvian wood impregnation company founded in 1992 with over 60 years of industry experience.",
+        "Our main products are impregnated wooden poles for electricity and communication lines, manufactured according to international standards.",
+        "We export high-quality wooden poles to Europe, the Middle East, and Africa, ensuring durability and long service life.",
+        "Using modern impregnation technology and eco-friendly preservatives, Jauda-Koks delivers sustainable and reliable solutions."
+      ]
     }
   }
 

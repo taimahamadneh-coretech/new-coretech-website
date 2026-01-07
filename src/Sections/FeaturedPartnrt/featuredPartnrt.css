@@ -1,0 +1,134 @@
+.main-wrapper {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;  
+  padding: 40px 20px;    
+  width: 100%;
+}
+
+.section-header {
+  text-align: center;    
+  margin-bottom: 40px;   
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+}
+
+.cards-container {
+  display: flex;
+  gap: 20px; 
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.glass-card {
+  width: 360px;
+  height: 520px;
+  border-radius: 35px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px;
+  transition: all 0.5s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.orange-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 1;
+}
+
+.top-nav, .middle-content, .progress-group {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.progress-group {
+  display: flex;
+  gap: 6px;
+  padding-bottom: 10px;
+}
+
+.bar-track {
+  flex: 1;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: white; 
+  width: 0%;
+}
+
+.middle-content h2 {
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+
+.slide-up-text {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.top-nav { display: flex; justify-content: space-between; align-items: center; }
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(1px);
+}
+.partner-logo-img {
+  max-height: 40px; 
+  max-width: 150px;
+  object-fit: contain; 
+  filter: brightness(0) invert(1); 
+}
+
+.partner-logo-img {
+  max-height: 30px;
+  max-width: 120px;
+  object-fit: contain;
+}
+.circle-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;      
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.5); 
+  background: rgba(255, 255, 255, 0.1);   
+  
+  color: white !important;   
+  text-decoration: none;    
+  font-size: 1.2rem;
+  transition: all 0.3s ease; 
+}
+
+.circle-arrow:hover {
+  background-color: white;  
+  color: #362a7b !important;
+  transform: scale(1.1);    
+}
