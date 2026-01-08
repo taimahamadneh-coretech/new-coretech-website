@@ -12,8 +12,14 @@ import jauda2 from '../../assets/images/FeaturedPartners/jaudaImage2.png';
 import jauda3 from '../../assets/images/FeaturedPartners/jaudaImage3.png';
 import jauda4 from '../../assets/images/FeaturedPartners/jaudaImage4.png';
 
+import hascelik1 from '../../assets/images/FeaturedPartners/hascelikfiber1.jpg';
+import hascelik2 from '../../assets/images/FeaturedPartners/hascelikfiber2.jpg';
+import hascelik3 from '../../assets/images/FeaturedPartners/hascelikfiber3.jpg';
+import hascelik4 from '../../assets/images/FeaturedPartners/hascelikfiber4.jpg';
+
 import hyteraLogo from '../../assets/images/FeaturedPartners/hytera-logo.png';
 import jaudaLogo from '../../assets/images/FeaturedPartners/jauda-logo.png';
+import hascelikfiber from '../../assets/images/FeaturedPartners/hascelikfiber-logo.png';
 
 const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -86,6 +92,8 @@ const FeaturedPartnersCardLayout = () => {
 
   const hyteraImages = [hytera2, hytera1, hytera3, hytera4];
   const jaudaImages = [jauda1, jauda2, jauda3, jauda4];
+  const hascelikImages = [hascelik1, hascelik2, hascelik3, hascelik4];
+
 
   return (
     <div className="main-wrapper section">
@@ -107,6 +115,13 @@ const FeaturedPartnersCardLayout = () => {
           externalLink="https://www.jauda-koks.lv/"
           companyName={t('Featuredpartners.jaudaKoks.name')}
           logo={jaudaLogo}
+        />
+         <FeaturedPartnersCard 
+          images={hascelikImages}
+          texts={t('Featuredpartners.jaudaKoks.slides', { returnObjects: true })}
+          externalLink="https://hascelikfiber.com.tr/"
+          companyName={t('Featuredpartners.jaudaKoks.name')}
+          logo={hascelikfiber}
         />
       </div>
     </div>

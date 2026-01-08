@@ -1,96 +1,149 @@
-import { companyData } from '../../data/companyData';
+import React, { useState } from 'react';
 import './services.css';
-import { useTranslation } from 'react-i18next';
+
+import { 
+  FaShieldAlt, 
+  FaNetworkWired, 
+  FaDatabase, 
+  FaClipboardCheck, 
+  FaKey, 
+  FaUserGraduate,
+  FaBuilding,
+  FaUserShield,
+  FaChartBar,
+  FaTachometerAlt,
+  FaEnvelope,
+  FaTrophy,
+  FaStar,
+  FaRocket
+} from 'react-icons/fa';
+
+const services = [
+  { name: "Endpoint Security", icon: <FaShieldAlt /> },
+  { name: "Network Security", icon: <FaNetworkWired /> },
+  { name: "Data Security", icon: <FaDatabase /> },
+  { name: "Security Assessment", icon: <FaClipboardCheck /> },
+  { name: "Access Control", icon: <FaKey /> },
+  { name: "End-user Education", icon: <FaUserGraduate /> },
+  { name: "Enterprise Cybersecurity Services", icon: <FaBuilding /> },
+  { name: "Specialized Cyber Security Solutions", icon: <FaUserShield /> },
+  { name: "Security Monitoring and Reporting", icon: <FaChartBar /> },
+  { name: "IT Optimization", icon: <FaTachometerAlt /> },
+  { name: "Data and Email Backup", icon: <FaEnvelope /> }
+];
 
 const Services = () => {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language;
+  const [activeCategory, setActiveCategory] = useState('all');
+  
+  const categorizedServices = {
+    'security': services.filter(s => 
+      s.name.includes('Security') || s.name.includes('Cybersecurity')
+    ),
+    'infrastructure': services.filter(s => 
+      s.name.includes('Network') || s.name.includes('IT Optimization') || s.name.includes('Access Control')
+    ),
+    'data': services.filter(s => 
+      s.name.includes('Data') || s.name.includes('Backup') || s.name.includes('Email')
+    ),
+    'other': services.filter(s => 
+      !s.name.includes('Security') && 
+      !s.name.includes('Network') && 
+      !s.name.includes('Data') && 
+      !s.name.includes('IT')
+    )
+  };
+
+  const displayedServices = activeCategory === 'all' 
+    ? services 
+    : categorizedServices[activeCategory];
 
   return (
-    <section id="services" className="section services-section">
-      <div className="section-container">
-
+    <section id="services" className="services-section">
+      <div className="services-container">
         <div className="section-header">
-          <h2 className="section-title">
-            {t('services.sectionTitle')}
-          </h2>
+          <h1 className="section-title">Our Services</h1>
           <p className="section-subtitle">
-            {t('services.sectionSubtitle')}
+            Advanced ICT and software solutions through strategic partnerships
           </p>
         </div>
 
-        <div className="services-grid">
-          {companyData.services.map((service, index) => (
-            <div key={index} className="service-card">
-
-              <div className="service-header">
-                <a
-                  href={service.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="service-logo-link"
-                >
-                  <img
-                    src={service.logo}
-                    alt={service.provider}
-                    className="service-logo"
-                  />
-                </a>
-
-                <div className="service-header-text">
-                  <h3 className="service-category">
-                    {service.category[lang]}
-                  </h3>
-                  <p className="service-provider">
-                    {service.provider}
-                  </p>
-                </div>
-              </div>
-
-              <p className="service-description">
-                {service.description[lang]}
-              </p>
-
-              <div className="services-content-grid">
-                <div className="service-offerings">
-                  <h4>{t('services.offeredTitle')}</h4>
-                  <ul className="service-list">
-                    {service.offerings.map((offering, idx) => (
-                      <li key={idx}>
-                        {offering[lang]}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {service.features && (
-                  <div className="service-offerings">
-                    <h4>{t('services.featuresTitle')}</h4>
-                    <ul className="service-list">
-                      {service.features.map((feature, idx) => (
-                        <li key={idx}>
-                          {feature[lang]}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-
-              {service.partners && (
-                <div className="service-partners">
-                  <h4>{t('services.partnersTitle')}</h4>
-                  <div className="partners-grid">
-                    {service.partners.map((partner, idx) => (
-                      <span key={idx} className="partner-badge">
-                        {partner}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
+        <div className="company-profile">
+          <div className="company-header">
+            <h2 className="company-name">Delta Line International (DLI)</h2>
+            <div className="company-badge">Since 2006</div>
+          </div>
+          <p className="company-description">
+            Leading Cyber Security Company over GCC since 2006, providing IT security 
+            with high quality service and up-to-date technology.
+          </p>
+          <div className="company-highlights">
+            <div className="highlight">
+              <span className="highlight-icon"><FaTrophy /></span>
+              <span>Leading in GCC</span>
             </div>
-          ))}
+            <div className="highlight">
+              <span className="highlight-icon"><FaStar /></span>
+              <span>High Quality Service</span>
+            </div>
+            <div className="highlight">
+              <span className="highlight-icon"><FaRocket /></span>
+              <span>Up-to-date Technology</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="services-filter">
+          <button 
+            className={`filter-btn ${activeCategory === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('all')}
+          >
+            All Services
+          </button>
+          <button 
+            className={`filter-btn ${activeCategory === 'security' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('security')}
+          >
+            Security
+          </button>
+          <button 
+            className={`filter-btn ${activeCategory === 'infrastructure' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('infrastructure')}
+          >
+            Infrastructure
+          </button>
+          <button 
+            className={`filter-btn ${activeCategory === 'data' ? 'active' : ''}`}
+            onClick={() => setActiveCategory('data')}
+          >
+            Data Management
+          </button>
+        </div>
+
+        <div className="services-list">
+          <h3 className="services-list-title">Services Offered</h3>
+          <div className="services-grid">
+            {displayedServices.map((service, index) => (
+              <div className="service-card" key={index}>
+                <div className="service-icon">{service.icon}</div>
+                <h4 className="service-name">{service.name}</h4>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="cta-section">
+          <h3 className="cta-title">Ready to Secure Your Digital Assets?</h3>
+          <p className="cta-text">
+            Contact us today to learn how DLI's comprehensive cybersecurity solutions 
+            can protect your organization from evolving threats.
+          </p>
+          <button className="cta-button">
+            <a 
+            href="https://deltaline-it.com/" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="cta-button">  Get in Touch </a>
+          </button>
         </div>
       </div>
     </section>

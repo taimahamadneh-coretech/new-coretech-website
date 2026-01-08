@@ -295,7 +295,7 @@
     }
   },
   "Featuredpartners": {
-    "sectionTitle": "Our partners",
+    "sectionTitle": "Our Partners",
     "sectionSubtitle": "Trusted partners powering our solutions and success.",
     "hytera": {
       "name": "Hytera",
@@ -314,6 +314,16 @@
         "We export high-quality wooden poles to Europe, the Middle East, and Africa, ensuring durability and long service life.",
         "Using modern impregnation technology and eco-friendly preservatives, Jauda-Koks delivers sustainable and reliable solutions."
       ]
+    },
+    "hascelikTexts":{
+      "name": "Hascelik Fiber",
+      "slides": [
+        "Founded in 2011, a subsidiary of Demiryaka Holding",
+  "Manufacturing OPGW & Fiber Optic Cables with advanced technology",
+  "Monthly capacity: 1200 km OPGW & 1200 km Fiber Optic Cable",
+  "Exporting to more than 30 countries across 5 continents"
+
+            ]
     }
   }
 
