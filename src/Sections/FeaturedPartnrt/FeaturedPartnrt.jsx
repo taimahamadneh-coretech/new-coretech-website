@@ -21,16 +21,29 @@ import hyteraLogo from '../../assets/images/FeaturedPartners/hytera-logo.png';
 import jaudaLogo from '../../assets/images/FeaturedPartners/jauda-logo.png';
 import hascelikfiber from '../../assets/images/FeaturedPartners/hascelikfiber-logo.png';
 
-const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo }) => {
+const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo, isActive, onComplete }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
+  useEffect(() => {
+    if (!isActive) {
+      setCurrentIndex(0);
+      setProgress(0);
+    }
+  }, [isActive]);
+
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    setProgress(0);
+    if (currentIndex < images.length - 1) {
+      setCurrentIndex((prev) => prev + 1);
+      setProgress(0);
+    } else {
+      onComplete(); 
+    }
   };
 
   useEffect(() => {
+    if (!isActive) return; 
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -40,18 +53,24 @@ const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo }
         return prev + 1;
       });
     }, 40);
+
     return () => clearInterval(interval);
-  }, [currentIndex, images.length]);
+  }, [isActive, currentIndex, images.length]);
 
   const handleCardClick = (e) => {
     if (e.target.closest('.circle-arrow')) return;
-    nextSlide();
+    nextSlide(); 
   };
 
   return (
     <div 
-      className="glass-card" 
-      style={{ backgroundImage: `url(${images[currentIndex]})`, cursor: 'pointer' }}
+      className={`glass-card ${isActive ? 'active-story' : 'inactive-story'}`} 
+      style={{ 
+        backgroundImage: `url(${images[currentIndex]})`, 
+        cursor: 'pointer',
+
+        transition: 'all 0.5s ease'
+      }}
       onClick={handleCardClick} 
     >
       <div className="orange-overlay"></div>
@@ -76,7 +95,8 @@ const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo }
             <div 
               className="bar-fill"
               style={{ 
-                width: index === currentIndex ? `${progress}%` : index < currentIndex ? '100%' : '0%',
+                // إذا كان السلايد قادم: 0%، إذا انتهى: 100%، إذا كان الحالي: حسب الـ progress
+                width: index === currentIndex && isActive ? `${progress}%` : index < currentIndex ? '100%' : '0%',
                 transition: index === currentIndex ? 'none' : 'width 0.3s ease'
               }}
             ></div>
@@ -89,40 +109,43 @@ const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo }
 
 const FeaturedPartnersCardLayout = () => {
   const { t } = useTranslation();
+  // تحديد أي كارت يعمل الآن (0 هو الأول)
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   const hyteraImages = [hytera2, hytera1, hytera3, hytera4];
   const jaudaImages = [jauda1, jauda2, jauda3, jauda4];
   const hascelikImages = [hascelik1, hascelik2, hascelik3, hascelik4];
 
+  const cards = [
+    { images: hyteraImages, link: "https://hytera.ae/", logo: hyteraLogo, name: t('Featuredpartners.hytera.name'), texts: t('Featuredpartners.hytera.slides', { returnObjects: true }) },
+    { images: jaudaImages, link: "https://www.jauda-koks.lv/", logo: jaudaLogo, name: t('Featuredpartners.jaudaKoks.name'), texts: t('Featuredpartners.jaudaKoks.slides', { returnObjects: true }) },
+    { images: hascelikImages, link: "https://hascelikfiber.com.tr/", logo: hascelikfiber, name: t('Featuredpartners.jaudaKoks.name'), texts: t('Featuredpartners.jaudaKoks.slides', { returnObjects: true }) }
+  ];
+
+  const handleCardComplete = () => {
+    // الانتقال للكارت التالي أو العودة للأول
+    setActiveCardIndex((prev) => (prev + 1) % cards.length);
+  };
 
   return (
-    <div className="main-wrapper section">
+    <div id="partners" className="main-wrapper section">
       <div className="section-header">
         <h2 className="section-title">{t('Featuredpartners.sectionTitle')}</h2>
         <p className="section-subtitle">{t('Featuredpartners.sectionSubtitle')}</p>
       </div>
       <div className="cards-container">
-        <FeaturedPartnersCard 
-          images={hyteraImages}
-          texts={t('Featuredpartners.hytera.slides', { returnObjects: true })}
-          externalLink="https://hytera.ae/"
-          companyName={t('Featuredpartners.hytera.name')}
-          logo={hyteraLogo}
-        />
-        <FeaturedPartnersCard 
-          images={jaudaImages}
-          texts={t('Featuredpartners.jaudaKoks.slides', { returnObjects: true })}
-          externalLink="https://www.jauda-koks.lv/"
-          companyName={t('Featuredpartners.jaudaKoks.name')}
-          logo={jaudaLogo}
-        />
-         <FeaturedPartnersCard 
-          images={hascelikImages}
-          texts={t('Featuredpartners.jaudaKoks.slides', { returnObjects: true })}
-          externalLink="https://hascelikfiber.com.tr/"
-          companyName={t('Featuredpartners.jaudaKoks.name')}
-          logo={hascelikfiber}
-        />
+        {cards.map((card, index) => (
+          <FeaturedPartnersCard
+            key={index}
+            isActive={index === activeCardIndex} // هل الكارت نشط؟
+            onComplete={handleCardComplete}      // ماذا يفعل عند النهاية
+            images={card.images}
+            texts={card.texts}
+            externalLink={card.link}
+            companyName={card.name}
+            logo={card.logo}
+          />
+        ))}
       </div>
     </div>
   );

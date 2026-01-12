@@ -24,7 +24,6 @@ const services = [
   { name: "Data Security", icon: <FaDatabase /> },
   { name: "Security Assessment", icon: <FaClipboardCheck /> },
   { name: "Access Control", icon: <FaKey /> },
-  { name: "End-user Education", icon: <FaUserGraduate /> },
   { name: "Enterprise Cybersecurity Services", icon: <FaBuilding /> },
   { name: "Specialized Cyber Security Solutions", icon: <FaUserShield /> },
   { name: "Security Monitoring and Reporting", icon: <FaChartBar /> },

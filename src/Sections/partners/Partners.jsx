@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 const Partners = () => {
   const { t } = useTranslation();
   return (
-    <section id="partners" className="partners-section section">
+    <section  className="partners-section section">
       <div className="section-header">
         <h2 className="section-title">{t('partners.sectionTitle')}</h2>
         <p className="section-subtitle">{t('partners.sectionSubtitle')}</p>
