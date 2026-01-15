@@ -1,20 +1,20 @@
 import "./gallery.css";
 
 const images = [
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image01.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image02.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image03.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image04.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image05.jpeg",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image06.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image07.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image08.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image09.jpg",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image10.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image11.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image12.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image13.png",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/image14.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475834/image01_g81lxq.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475834/image02_crz9yp.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475832/image03_qemn8j.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475833/image04_j0oisg.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475832/image05_w9zxjz.jpg",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475832/image06_cjhjal.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475832/image07_a33rwa.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475832/image08_xzrdhm.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475832/image09_sy1fbs.jpg",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475833/image10_fovzva.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475833/image11_w393wk.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475833/image12_t5xwcq.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475834/image13_fzfvkj.png",
+  "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475834/image14_vdpqb3.png",
 ];
 export default function Gallery() {
   return (
