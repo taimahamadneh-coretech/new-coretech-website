@@ -10,9 +10,9 @@ import Careers from './pages/careers/Career';
 import './styles/global.css';
 
 const heroVideos = [
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/hero1.mp4",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/hero2.mp4",
-  "https://xnsi8ilhu94scx3r.public.blob.vercel-storage.com/hero3.mp4"
+  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero1_znyrrt.mp4",
+  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero3_wbo25o.mp4",
+  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero3_wbo25o.mp4"
 ];
 
 const images = [
