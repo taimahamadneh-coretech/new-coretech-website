@@ -95,7 +95,6 @@ const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo, 
             <div 
               className="bar-fill"
               style={{ 
-                // إذا كان السلايد قادم: 0%، إذا انتهى: 100%، إذا كان الحالي: حسب الـ progress
                 width: index === currentIndex && isActive ? `${progress}%` : index < currentIndex ? '100%' : '0%',
                 transition: index === currentIndex ? 'none' : 'width 0.3s ease'
               }}
@@ -109,7 +108,6 @@ const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo, 
 
 const FeaturedPartnersCardLayout = () => {
   const { t } = useTranslation();
-  // تحديد أي كارت يعمل الآن (0 هو الأول)
   const [activeCardIndex, setActiveCardIndex] = useState(0);
 
   const hyteraImages = [hytera2, hytera1, hytera3, hytera4];
@@ -119,11 +117,10 @@ const FeaturedPartnersCardLayout = () => {
   const cards = [
     { images: hyteraImages, link: "https://hytera.ae/", logo: hyteraLogo, name: t('Featuredpartners.hytera.name'), texts: t('Featuredpartners.hytera.slides', { returnObjects: true }) },
     { images: jaudaImages, link: "https://www.jauda-koks.lv/", logo: jaudaLogo, name: t('Featuredpartners.jaudaKoks.name'), texts: t('Featuredpartners.jaudaKoks.slides', { returnObjects: true }) },
-    { images: hascelikImages, link: "https://hascelikfiber.com.tr/", logo: hascelikfiber, name: t('Featuredpartners.jaudaKoks.name'), texts: t('Featuredpartners.jaudaKoks.slides', { returnObjects: true }) }
+    { images: hascelikImages, link: "https://hascelikfiber.com.tr/", logo: hascelikfiber, name: t('Featuredpartners.hascelikTexts.name'), texts: t('Featuredpartners.hascelikTexts.slides', { returnObjects: true }) }
   ];
 
   const handleCardComplete = () => {
-    // الانتقال للكارت التالي أو العودة للأول
     setActiveCardIndex((prev) => (prev + 1) % cards.length);
   };
 
@@ -137,8 +134,8 @@ const FeaturedPartnersCardLayout = () => {
         {cards.map((card, index) => (
           <FeaturedPartnersCard
             key={index}
-            isActive={index === activeCardIndex} // هل الكارت نشط؟
-            onComplete={handleCardComplete}      // ماذا يفعل عند النهاية
+            isActive={index === activeCardIndex}
+            onComplete={handleCardComplete}
             images={card.images}
             texts={card.texts}
             externalLink={card.link}
