@@ -60,7 +60,7 @@
   line-height: 1.7;
   color: var(--grey);
   color: var(--white);
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .company-highlights {
@@ -91,8 +91,7 @@
   display: flex;
   justify-content: center;
   gap: 15px;
-  margin-bottom: 40px;
-  margin: 40px;
+  margin: 25px;
   flex-wrap: wrap;
 }
 
@@ -118,13 +117,13 @@
 }
 
 .services-list {
-  margin-bottom: 60px;
+  margin-bottom: 10px;
 }
 
 .services-list-title {
   font-size: 1.8rem;
   color: var(--white);
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   text-align: center;
 }
 
@@ -320,7 +319,6 @@ a.cta-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
   flex-wrap: wrap;
 }
 
