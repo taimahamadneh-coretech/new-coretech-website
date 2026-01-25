@@ -12,7 +12,6 @@ import Map from '../Sections/map/Map';
 import GroupCompanies from '../Sections/groupCompanies/groupCompanies';
 import Games from '../Sections/games/game'
 import FeaturedPartnersCardLayout from '../Sections/FeaturedPartnrt/FeaturedPartnrt';
-import IxcodersServices from '../Sections/IXcoders/ixcoders';
 
 export default function Home() {
   return (
