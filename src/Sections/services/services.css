@@ -45,6 +45,7 @@
   font-size: 0.8rem;
   opacity: 0.9;
 }
+
 .company-badge-link {
   color: #fff;
   display: flex;
@@ -151,6 +152,7 @@
   transform: translateY(-8px);
   border-color: var(--blue-deep);
 }
+
 .service-icon {
   font-size: 1.5rem;  
   margin-bottom: 10px;
@@ -179,7 +181,6 @@
   border-radius: 20px;
   padding: 50px 40px;
   text-align: center;
-
 }
 
 .cta-title {
