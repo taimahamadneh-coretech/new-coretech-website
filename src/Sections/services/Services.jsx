@@ -113,7 +113,7 @@ const Services = () => {
     activeDevCategory === "all"
       ? devServices
       : categorizedDevServices[activeDevCategory];
-  
+
   return (
     <section id="services" className="services-section">
       <div className="services-container">
@@ -131,11 +131,13 @@ const Services = () => {
                 <a
                   href="https://deltaline-it.com/"
                   target="_blank"
-                  rel="noopener noreferrer"> 
+                  rel="noopener noreferrer"
+                >
                   <img
                     src={companyLogos.dli}
                     alt="Delta Line International Logo"
-                    className="company-logo"/>
+                    className="company-logo"
+                  />
                 </a>
               </div>
               <h2 className="company-name">Delta Line International (DLI)</h2>
@@ -146,7 +148,8 @@ const Services = () => {
                 href="https://deltaline-it.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="company-badge-link" >
+                className="company-badge-link"
+              >
                 <FaArrowRight className="company-badge-arrow" />
               </a>
             </div>
