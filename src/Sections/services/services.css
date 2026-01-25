@@ -1,13 +1,12 @@
-
 .services-container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 15px;
 }
 
 .company-profile {
   background: var(--white);
   background: var(--vm-card-bg);
-
   border-radius: 20px;
   padding: 40px;
   box-shadow: 0 10px 30px var(--dark-shadow);
@@ -37,6 +36,23 @@
   border-radius: 30px;
   font-weight: 600;
   font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.company-badge-arrow {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+.company-badge-link {
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.company-badge-link:hover {
+  color: #fff; 
 }
 
 .company-description {
@@ -57,9 +73,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background: var(--white-light);
-    background: var(--vm-card-bg);
-
+  background: var(--vm-card-bg);
   padding: 12px 20px;
   border-radius: 12px;
   font-weight: 600;
@@ -78,6 +92,7 @@
   justify-content: center;
   gap: 15px;
   margin-bottom: 40px;
+  margin: 40px;
   flex-wrap: wrap;
 }
 
@@ -85,7 +100,6 @@
   padding: 12px 25px;
   border: none;
   background: var(--white-soft);
-  
   color: var(--blue-deep);
   border-radius: 30px;
   font-weight: 600;
@@ -149,7 +163,7 @@
   height: 45px;
   background: var(--text-muted);
   border-radius: 50%;
-  padding: 8px;
+  padding: 5px;
 }
 
 .service-name {
@@ -203,6 +217,7 @@ a.cta-button {
   text-decoration: none;
   text-align: center;
 }
+
 @media (max-width: 768px) {
   .services-section {
     padding: 50px 15px;
@@ -237,6 +252,15 @@ a.cta-button {
     width: 50px;
     height: 50px;
   }
+  
+  .company-badge {
+    padding: 6px 15px;
+    font-size: 0.8rem;
+  }
+  
+  .company-badge-arrow {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -261,5 +285,69 @@ a.cta-button {
   .filter-btn {
     padding: 10px 20px;
     font-size: 0.9rem;
+  }
+  
+  .company-badge {
+    margin-top: 10px;
+  }
+}
+
+.company-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.company-logo-container {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  background: var(--white-light);
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--blue-main);
+}
+
+.company-logo {
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+}
+
+
+.company-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .company-logo-container {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .company-info {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .company-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .company-info {
+    width: 100%;
+  }
+  
+  .company-logo-container {
+    width: 50px;
+    height: 50px;
   }
 }
