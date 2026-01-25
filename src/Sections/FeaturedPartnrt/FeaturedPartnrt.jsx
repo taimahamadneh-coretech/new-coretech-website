@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback  } from 'react';
 import './featuredPartnrt.css';
 import { useTranslation } from 'react-i18next';
 
@@ -32,30 +32,31 @@ const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo, 
     }
   }, [isActive]);
 
-  const nextSlide = () => {
-    if (currentIndex < images.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setProgress(0);
-    } else {
-      onComplete(); 
-    }
-  };
+ const nextSlide = useCallback(() => {
+  if (currentIndex < images.length - 1) {
+    setCurrentIndex((prev) => prev + 1);
+    setProgress(0);
+  } else {
+    onComplete();
+  }
+}, [currentIndex, images.length, onComplete]);
 
-  useEffect(() => {
-    if (!isActive) return; 
+useEffect(() => {
+  if (!isActive) return;
 
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          nextSlide();
-          return 0;
-        }
-        return prev + 1;
-      });
-    }, 40);
+  const interval = setInterval(() => {
+    setProgress((prev) => {
+      if (prev >= 100) {
+        nextSlide();
+        return 0;
+      }
+      return prev + 1;
+    });
+  }, 40);
 
-    return () => clearInterval(interval);
-  }, [isActive, currentIndex, images.length]);
+  return () => clearInterval(interval);
+}, [isActive, currentIndex, images.length, nextSlide]);
+
 
   const handleCardClick = (e) => {
     if (e.target.closest('.circle-arrow')) return;
