@@ -17,8 +17,7 @@
       "services": "Services",
       "clients": "Clients",
       "contact": "Contact",
-      "career":"Careers"
-
+      "career": "Careers"
     },
     "services": {
       "title": "Our Services",
@@ -140,27 +139,27 @@
       "position": "Operations Management"
     }
   },
-  "map":{
+  "map": {
     "title": "Coretech’s expansion",
     "sub-title": "Connecting Markets Worldwide",
-    "projects":"Projects",
-    "expansion":"Expansion",
+    "projects": "Projects",
+    "expansion": "Expansion",
     "partners": "Partners"
   },
-    "groupCompanies": {
+  "groupCompanies": {
     "title": "HiTop Group",
     "subtitle": "Our company is part of HiTop Group, a group of sister companies working together to deliver integrated technology and telecom solutions.",
- 
+
     "delta": {
       "description": "Based in Dubai, UAE, this company is a leading cybersecurity provider across the GCC. Established in 2006, it delivers advanced IT security solutions with a strong focus on customer satisfaction, trusted partnerships, and successful projects for government and private sectors."
     },
- 
+
     "primer": {
       "description": "Providing comprehensive logistics solutions, including customs clearance, freight forwarding, and import/export documentation management, with air, sea, and ground transport options to ensure efficient and compliant international trade."
     }
   },
-  
-   "careers": {
+
+  "careers": {
     "salesExecutive": "Sales Executive",
     "remote": "Remote",
     "contract": "Contract",
@@ -268,7 +267,7 @@
     "oct": "Oct",
     "nov": "Nov",
     "dec": "Dec",
-     "degreeName": "Degree Name",
+    "degreeName": "Degree Name",
     "degreeNamePlaceholder": "e.g., Computer Science",
     "associate": "Associate Degree",
     "universityGpaHint": "Optional - leave blank if you don't have GPA"
@@ -294,37 +293,54 @@
       "bulb": "Idea"
     }
   },
-  "Featuredpartners": {
-    "sectionTitle": "Our Partners",
-    "sectionSubtitle": "Trusted partners powering our solutions and success.",
-    "hytera": {
-      "name": "Hytera",
-      "slides": [
-        "Hytera Body Cameras deliver reliable video evidence solutions backed by over 32 years of public safety experience.",
-        "High-definition body-worn cameras designed to capture critical moments, enhance transparency, and protect both officers and organizations.",
-        "One-stop Digital Evidence Management enables secure upload, storage, retrieval, and investigation of video evidence.",
-        "More than a camera – live streaming, real-time location, and push-to-talk communication connect the field with the command center."
-      ]
-    },
-    "jaudaKoks": {
-      "name": "Jauda Koks",
-      "slides": [
-        "Jauda-Koks LTD – A Latvian wood impregnation company founded in 1992 with over 60 years of industry experience.",
-        "Our main products are impregnated wooden poles for electricity and communication lines, manufactured according to international standards.",
-        "We export high-quality wooden poles to Europe, the Middle East, and Africa, ensuring durability and long service life.",
-        "Using modern impregnation technology and eco-friendly preservatives, Jauda-Koks delivers sustainable and reliable solutions."
-      ]
-    },
-    "hascelikTexts":{
-      "name": "Hascelik Fiber",
-      "slides": [
-        "Founded in 2011, a subsidiary of Demiryaka Holding",
-  "Manufacturing OPGW & Fiber Optic Cables with advanced technology",
-  "Monthly capacity: 1200 km OPGW & 1200 km Fiber Optic Cable",
-  "Exporting to more than 30 countries across 5 continents"
-
-            ]
-    }
+ "Featuredpartners": {
+  "sectionTitle": "Our Partners",
+  "sectionSubtitle": "Trusted partners powering our solutions and success.",
+  "hytera": {
+    "name": "Hytera",
+    "slides": [
+      "Global leader in professional two-way radio communication solutions",
+      "Designs and manufactures innovative systems for diverse customer needs",
+      "Secure digital evidence management for video upload storage investigation",
+      "Live streaming location tracking and push-to-talk field connectivity"
+    ]
+  },
+  "jaudaKoks": {
+    "name": "Jauda Koks",
+    "slides": [
+      "Latvian company specialized in wood impregnation solutions",
+      "Manufactures wooden poles meeting international electricity standards",
+      "Exports durable poles across Europe Middle East Africa",
+      "Uses eco-friendly technology ensuring sustainability reliability longevity"
+    ]
+  },
+  "hascelikTexts": {
+    "name": "Hascelik Fiber",
+    "slides": [
+      "Subsidiary of Demiryaka Holding founded in 2011",
+      "Manufactures OPGW and fiber optic cable solutions",
+      "High monthly production capacity using advanced technology",
+      "Exports products to global markets across five continents"
+    ]
+  },
+  "quaildigital": {
+    "name": "quaildigital",
+    "slides": [
+      "Global manufacturer of professional digital wireless headset systems",
+      "Delivers imaginative design using premium quality materials",
+      "Develops headsets for healthcare retail quick service",
+      "Focused on technical innovation and design excellence"
+    ]
+  },
+  "ixcoders": {
+    "name": "ixcoders",
+    "slides": [
+      "Leading software company in smart technology solutions",
+      "Integrates web and mobile systems development",
+      "Builds fast secure beautiful and intelligent applications",
+      "Supports customer growth data management business efficiency"
+    ]
   }
+}
 
 }
