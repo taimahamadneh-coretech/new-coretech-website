@@ -63,7 +63,9 @@
   },
   "products": {
     "sectionTitle": "Our Products",
-    "sectionSubtitle": "Comprehensive telecommunications infrastructure solutions"
+    "sectionSubtitle": "Comprehensive telecommunications infrastructure solutions",
+    "seeMore":"See More",
+    "seeLess": "See Less"
   },
   "lang": "en",
   "contact": {

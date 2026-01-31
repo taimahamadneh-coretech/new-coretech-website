@@ -63,7 +63,9 @@
   },
   "products": {
     "sectionTitle": "منتجاتنا",
-    "sectionSubtitle": "حلول متكاملة للبنية التحتية للاتصالات"
+    "sectionSubtitle": "حلول متكاملة للبنية التحتية للاتصالات",
+     "seeMore":"عرض المزيد",
+     "seeLess": "عرض أقل"
   },
   "contact": {
     "sectionTitle": "تواصل معنا",
