@@ -64,7 +64,7 @@
   "products": {
     "sectionTitle": "Our Products",
     "sectionSubtitle": "Comprehensive telecommunications infrastructure solutions",
-    "seeMore":"See More",
+    "seeMore": "See More",
     "seeLess": "See Less"
   },
   "lang": "en",
@@ -103,9 +103,60 @@
   "services": {
     "sectionTitle": "Our Services",
     "sectionSubtitle": "Advanced ICT and software solutions through strategic partnerships",
-    "offeredTitle": "Services Offered:",
-    "featuresTitle": "Features:",
-    "partnersTitle": "Technology Partners:"
+
+    "filters": {
+      "all": "All Services",
+      "security": "Security",
+      "infrastructure": "Infrastructure",
+      "data": "Data Management",
+      "web": "Web Development",
+      "mobile": "Mobile Applications",
+      "backend": "Backend & API",
+      "support": "Support"
+    },
+
+    "dli": {
+      "name": "Delta Line International",
+      "description": "A leading cybersecurity company in the GCC since 2006, delivering high-quality IT security services using up-to-date technologies.",
+      "highlights": {
+        "gcc": "Leading in GCC",
+        "quality": "High Quality Service",
+        "tech": "Up-to-date Technology"
+      },
+      "listTitle": "Services Offered",
+      "items": {
+        "endpoint": "Endpoint Security",
+        "network": "Network Security",
+        "data": "Data Security",
+        "assessment": "Security Assessment",
+        "access": "Access Control",
+        "enterprise": "Enterprise Cybersecurity Services",
+        "specialized": "Specialized Cyber Security Solutions",
+        "monitoring": "Security Monitoring & Reporting",
+        "optimization": "IT Optimization",
+        "backup": "Data & Email Backup"
+      }
+    },
+
+    "ixcoders": {
+      "name": "IXCoders",
+      "description": "Our premier partner for web and mobile application development, delivering innovative digital solutions with exceptional user experience.",
+      "highlights": {
+        "custom": "Custom Development",
+        "cross": "Cross-Platform Apps",
+        "fast": "Fast Deployment"
+      },
+      "listTitle": "Development Services",
+      "items": {
+        "web": "Web Applications",
+        "mobile": "Mobile Applications",
+        "database": "Database Solutions",
+        "servers": "Servers Management",
+        "security": "Systems Security",
+        "uiux": "UI/UX Design",
+        "support": "Maintenance & Support"
+      }
+    }
   },
   "feedback": {
     "title": "What Our Clients Say",
@@ -295,54 +346,53 @@
       "bulb": "Idea"
     }
   },
- "Featuredpartners": {
-  "sectionTitle": "Our Partners",
-  "sectionSubtitle": "Trusted partners powering our solutions and success.",
-  "hytera": {
-    "name": "Hytera",
-    "slides": [
-      "Global leader in professional two-way radio communication solutions",
-      "Designs and manufactures innovative systems for diverse customer needs",
-      "Secure digital evidence management for video upload storage investigation",
-      "Live streaming location tracking and push-to-talk field connectivity"
-    ]
-  },
-  "jaudaKoks": {
-    "name": "Jauda Koks",
-    "slides": [
-      "Latvian company specialized in wood impregnation solutions",
-      "Manufactures wooden poles meeting international electricity standards",
-      "Exports durable poles across Europe Middle East Africa",
-      "Uses eco-friendly technology ensuring sustainability reliability longevity"
-    ]
-  },
-  "hascelikTexts": {
-    "name": "Hascelik Fiber",
-    "slides": [
-      "Subsidiary of Demiryaka Holding founded in 2011",
-      "Manufactures OPGW and fiber optic cable solutions",
-      "High monthly production capacity using advanced technology",
-      "Exports products to global markets across five continents"
-    ]
-  },
-  "quaildigital": {
-    "name": "quaildigital",
-    "slides": [
-      "Global manufacturer of professional digital wireless headset systems",
-      "Delivers imaginative design using premium quality materials",
-      "Develops headsets for healthcare retail quick service",
-      "Focused on technical innovation and design excellence"
-    ]
-  },
-  "ixcoders": {
-    "name": "ixcoders",
-    "slides": [
-      "Leading software company in smart technology solutions",
-      "Integrates web and mobile systems development",
-      "Builds fast secure beautiful and intelligent applications",
-      "Supports customer growth data management business efficiency"
-    ]
+  "Featuredpartners": {
+    "sectionTitle": "Our Partners",
+    "sectionSubtitle": "Trusted partners powering our solutions and success.",
+    "hytera": {
+      "name": "Hytera",
+      "slides": [
+        "Global leader in professional two-way radio communication solutions",
+        "Designs and manufactures innovative systems for diverse customer needs",
+        "Secure digital evidence management for video upload storage investigation",
+        "Live streaming location tracking and push-to-talk field connectivity"
+      ]
+    },
+    "jaudaKoks": {
+      "name": "Jauda Koks",
+      "slides": [
+        "Latvian company specialized in wood impregnation solutions",
+        "Manufactures wooden poles meeting international electricity standards",
+        "Exports durable poles across Europe Middle East Africa",
+        "Uses eco-friendly technology ensuring sustainability reliability longevity"
+      ]
+    },
+    "hascelikTexts": {
+      "name": "Hascelik Fiber",
+      "slides": [
+        "Subsidiary of Demiryaka Holding founded in 2011",
+        "Manufactures OPGW and fiber optic cable solutions",
+        "High monthly production capacity using advanced technology",
+        "Exports products to global markets across five continents"
+      ]
+    },
+    "quaildigital": {
+      "name": "quaildigital",
+      "slides": [
+        "Global manufacturer of professional digital wireless headset systems",
+        "Delivers imaginative design using premium quality materials",
+        "Develops headsets for healthcare retail quick service",
+        "Focused on technical innovation and design excellence"
+      ]
+    },
+    "ixcoders": {
+      "name": "ixcoders",
+      "slides": [
+        "Leading software company in smart technology solutions",
+        "Integrates web and mobile systems development",
+        "Builds fast secure beautiful and intelligent applications",
+        "Supports customer growth data management business efficiency"
+      ]
+    }
   }
-}
-
 }

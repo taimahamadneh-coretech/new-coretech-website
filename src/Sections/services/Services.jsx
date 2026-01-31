@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./services.css";
 import delta from "../../assets/images/Services/delta.png";
 import ixcoders from "../../assets/images/Services/ixcoders.png";
+import { useTranslation } from "react-i18next";
 
 import {
   FaShieldAlt,
@@ -25,305 +26,197 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
+/* -------------------- Data -------------------- */
+
 const companyLogos = {
   dli: delta,
   ixcoders: ixcoders,
 };
 
 const services = [
-  { name: "Endpoint Security", icon: <FaShieldAlt /> },
-  { name: "Network Security", icon: <FaNetworkWired /> },
-  { name: "Data Security", icon: <FaDatabase /> },
-  { name: "Security Assessment", icon: <FaClipboardCheck /> },
-  { name: "Access Control", icon: <FaKey /> },
-  { name: "Enterprise Cybersecurity Services", icon: <FaBuilding /> },
-  { name: "Specialized Cyber Security Solutions", icon: <FaUserShield /> },
-  { name: "Security Monitoring and Reporting", icon: <FaChartBar /> },
-  { name: "IT Optimization", icon: <FaTachometerAlt /> },
-  { name: "Data and Email Backup", icon: <FaEnvelope /> },
+  { key: "endpoint", category: "security", icon: <FaShieldAlt /> },
+  { key: "network", category: "infrastructure", icon: <FaNetworkWired /> },
+  { key: "data", category: "data", icon: <FaDatabase /> },
+  { key: "assessment", category: "security", icon: <FaClipboardCheck /> },
+  { key: "access", category: "infrastructure", icon: <FaKey /> },
+  { key: "enterprise", category: "security", icon: <FaBuilding /> },
+  { key: "specialized", category: "security", icon: <FaUserShield /> },
+  { key: "monitoring", category: "security", icon: <FaChartBar /> },
+  { key: "optimization", category: "infrastructure", icon: <FaTachometerAlt /> },
+  { key: "backup", category: "data", icon: <FaEnvelope /> },
 ];
 
 const devServices = [
-  { name: "Website Applications", icon: <FaCode /> },
-  { name: "Mobile Applications", icon: <FaMobileAlt /> },
-  { name: "Database", icon: <FaCloud /> },
-  { name: "Servers Management", icon: <FaDatabase /> },
-  { name: "Systems Security", icon: <FaLock /> },
-  { name: "UI/UX Design", icon: <FaShapes /> },
-  { name: "Maintenance & Support", icon: <FaTachometerAlt /> },
+  { key: "web", category: "web", icon: <FaCode /> },
+  { key: "mobile", category: "mobile", icon: <FaMobileAlt /> },
+  { key: "database", category: "backend", icon: <FaCloud /> },
+  { key: "servers", category: "backend", icon: <FaDatabase /> },
+  { key: "security", category: "backend", icon: <FaLock /> },
+  { key: "uiux", category: "web", icon: <FaShapes /> },
+  { key: "support", category: "support", icon: <FaTachometerAlt /> },
 ];
 
+/* -------------------- Component -------------------- */
+
 const Services = () => {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState("all");
   const [activeDevCategory, setActiveDevCategory] = useState("all");
 
-  const categorizedServices = {
-    security: services.filter(
-      (s) => s.name.includes("Security") || s.name.includes("Cybersecurity"),
-    ),
-    infrastructure: services.filter(
-      (s) =>
-        s.name.includes("Network") ||
-        s.name.includes("IT Optimization") ||
-        s.name.includes("Access Control"),
-    ),
-    data: services.filter(
-      (s) =>
-        s.name.includes("Data") ||
-        s.name.includes("Backup") ||
-        s.name.includes("Email"),
-    ),
-    other: services.filter(
-      (s) =>
-        !s.name.includes("Security") &&
-        !s.name.includes("Network") &&
-        !s.name.includes("Data") &&
-        !s.name.includes("IT"),
-    ),
-  };
+  const displayedServices = useMemo(() => {
+    return activeCategory === "all"
+      ? services
+      : services.filter((s) => s.category === activeCategory);
+  }, [activeCategory]);
 
-  const categorizedDevServices = {
-    web: devServices.filter(
-      (s) =>
-        s.name.includes("Website") ||
-        s.name.includes("E-Commerce") ||
-        s.name.includes("UI/UX"),
-    ),
-    mobile: devServices.filter(
-      (s) => s.name.includes("Mobile") || s.name.includes("Application"),
-    ),
-    backend: devServices.filter(
-      (s) =>
-        s.name.includes("Database") ||
-        s.name.includes("Server") ||
-        s.name.includes("API"),
-    ),
-    support: devServices.filter(
-      (s) =>
-        s.name.includes("Maintenance") ||
-        s.name.includes("Support") ||
-        s.name.includes("Digital"),
-    ),
-  };
-
-  const displayedServices =
-    activeCategory === "all" ? services : categorizedServices[activeCategory];
-
-  const displayedDevServices =
-    activeDevCategory === "all"
+  const displayedDevServices = useMemo(() => {
+    return activeDevCategory === "all"
       ? devServices
-      : categorizedDevServices[activeDevCategory];
+      : devServices.filter((s) => s.category === activeDevCategory);
+  }, [activeDevCategory]);
 
   return (
     <section id="services" className="services-section">
       <div className="services-container">
+
+        {/* ---------- Header ---------- */}
         <div className="section-header">
-          <h1 className="section-title">Our Services</h1>
-          <p className="section-subtitle">
-            Advanced ICT and software solutions through strategic partnerships
-          </p>
+          <h1 className="section-title">{t("services.sectionTitle")}</h1>
+          <p className="section-subtitle">{t("services.sectionSubtitle")}</p>
         </div>
 
+        {/* ================== DLI ================== */}
         <div className="company-profile">
           <div className="company-header">
             <div className="company-info">
               <div className="company-logo-container">
-                <a
-                  href="https://deltaline-it.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src={companyLogos.dli}
-                    alt="Delta Line International Logo"
-                    className="company-logo"
-                  />
+                <a href="https://deltaline-it.com/" target="_blank" rel="noreferrer">
+                  <img src={companyLogos.dli} alt="DLI Logo" className="company-logo" />
                 </a>
               </div>
-              <h2 className="company-name">Delta Line International (DLI)</h2>
+              <h2 className="company-name">{t("services.dli.name")}</h2>
             </div>
+
             <div className="company-badge">
               Since 2006
-              <a
-                href="https://deltaline-it.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="company-badge-link"
-              >
+              <a href="https://deltaline-it.com/" target="_blank" rel="noreferrer">
                 <FaArrowRight className="company-badge-arrow" />
               </a>
             </div>
           </div>
 
           <p className="company-description">
-            Leading Cyber Security Company over GCC since 2006, providing IT
-            security with high quality service and up-to-date technology.
+            {t("services.dli.description")}
           </p>
 
           <div className="company-highlights">
             <div className="highlight">
-              <span className="highlight-icon">
-                <FaTrophy />
-              </span>
-              <span>Leading in GCC</span>
+              <FaTrophy /> {t("services.dli.highlights.gcc")}
             </div>
             <div className="highlight">
-              <span className="highlight-icon">
-                <FaStar />
-              </span>
-              <span>High Quality Service</span>
+              <FaStar /> {t("services.dli.highlights.quality")}
             </div>
             <div className="highlight">
-              <span className="highlight-icon">
-                <FaRocket />
-              </span>
-              <span>Up-to-date Technology</span>
+              <FaRocket /> {t("services.dli.highlights.tech")}
             </div>
           </div>
 
           <div className="services-filter">
-            <button
-              className={`filter-btn ${activeCategory === "all" ? "active" : ""}`}
-              onClick={() => setActiveCategory("all")}
-            >
-              All Services
-            </button>
-            <button
-              className={`filter-btn ${activeCategory === "security" ? "active" : ""}`}
-              onClick={() => setActiveCategory("security")}
-            >
-              Security
-            </button>
-            <button
-              className={`filter-btn ${activeCategory === "infrastructure" ? "active" : ""}`}
-              onClick={() => setActiveCategory("infrastructure")}
-            >
-              Infrastructure
-            </button>
-            <button
-              className={`filter-btn ${activeCategory === "data" ? "active" : ""}`}
-              onClick={() => setActiveCategory("data")}
-            >
-              Data Management
-            </button>
+            {["all", "security", "infrastructure", "data"].map((cat) => (
+              <button
+                key={cat}
+                className={`filter-btn ${activeCategory === cat ? "active" : ""}`}
+                onClick={() => setActiveCategory(cat)}
+              >
+                {t(`services.filters.${cat}`)}
+              </button>
+            ))}
           </div>
 
           <div className="services-list">
-            <h3 className="services-list-title">Services Offered</h3>
+            <h3 className="services-list-title">
+              {t("services.dli.listTitle")}
+            </h3>
+
             <div className="services-grid">
-              {displayedServices.map((service, index) => (
-                <div className="service-card" key={index}>
+              {displayedServices.map((service) => (
+                <div className="service-card" key={service.key}>
                   <div className="service-icon">{service.icon}</div>
-                  <h4 className="service-name">{service.name}</h4>
+                  <h4 className="service-name">
+                    {t(`services.dli.items.${service.key}`)}
+                  </h4>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
+        {/* ================== IXCoders ================== */}
         <div className="company-profile">
           <div className="company-header">
             <div className="company-info">
               <div className="company-logo-container">
-                <a
-                  href="https://ixcoders.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src={companyLogos.ixcoders}
-                    alt="IXCoders Logo"
-                    className="company-logo"
-                  />
+                <a href="https://ixcoders.com/" target="_blank" rel="noreferrer">
+                  <img src={companyLogos.ixcoders} alt="IXCoders Logo" className="company-logo" />
                 </a>
               </div>
-              <h2 className="company-name">IXCoders</h2>
+              <h2 className="company-name">{t("services.ixcoders.name")}</h2>
             </div>
+
             <div className="company-badge">
               Since 2020
-              <a
-                href="https://ixcoders.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="company-badge-link"
-              >
+              <a href="https://ixcoders.com/" target="_blank" rel="noreferrer">
                 <FaArrowRight className="company-badge-arrow" />
               </a>
             </div>
           </div>
 
           <p className="company-description">
-            Our premier partner for web and mobile application development.
-            Specializing in creating cutting-edge digital solutions with
-            innovative technology and exceptional user experience.
+            {t("services.ixcoders.description")}
           </p>
 
           <div className="company-highlights">
             <div className="highlight">
-              <span className="highlight-icon">
-                <FaCode />
-              </span>
-              <span>Custom Development</span>
+              <FaCode /> {t("services.ixcoders.highlights.custom")}
             </div>
             <div className="highlight">
-              <span className="highlight-icon">
-                <FaMobileAlt />
-              </span>
-              <span>Cross-Platform Apps</span>
+              <FaMobileAlt /> {t("services.ixcoders.highlights.cross")}
             </div>
             <div className="highlight">
-              <span className="highlight-icon">
-                <FaRocket />
-              </span>
-              <span>Fast Deployment</span>
+              <FaRocket /> {t("services.ixcoders.highlights.fast")}
             </div>
           </div>
 
           <div className="services-filter">
-            <button
-              className={`filter-btn ${activeDevCategory === "all" ? "active" : ""}`}
-              onClick={() => setActiveDevCategory("all")}
-            >
-              All Services
-            </button>
-            <button
-              className={`filter-btn ${activeDevCategory === "web" ? "active" : ""}`}
-              onClick={() => setActiveDevCategory("web")}
-            >
-              Web Development
-            </button>
-            <button
-              className={`filter-btn ${activeDevCategory === "mobile" ? "active" : ""}`}
-              onClick={() => setActiveDevCategory("mobile")}
-            >
-              Mobile Apps
-            </button>
-            <button
-              className={`filter-btn ${activeDevCategory === "backend" ? "active" : ""}`}
-              onClick={() => setActiveDevCategory("backend")}
-            >
-              Backend & API
-            </button>
-            <button
-              className={`filter-btn ${activeDevCategory === "support" ? "active" : ""}`}
-              onClick={() => setActiveDevCategory("support")}
-            >
-              Support
-            </button>
+            {["all", "web", "mobile", "backend", "support"].map((cat) => (
+              <button
+                key={cat}
+                className={`filter-btn ${activeDevCategory === cat ? "active" : ""}`}
+                onClick={() => setActiveDevCategory(cat)}
+              >
+                {t(`services.filters.${cat}`)}
+              </button>
+            ))}
           </div>
 
           <div className="services-list">
-            <h3 className="services-list-title">Development Services</h3>
+            <h3 className="services-list-title">
+              {t("services.ixcoders.listTitle")}
+            </h3>
+
             <div className="services-grid">
-              {displayedDevServices.map((service, index) => (
-                <div className="service-card" key={index}>
+              {displayedDevServices.map((service) => (
+                <div className="service-card" key={service.key}>
                   <div className="service-icon">{service.icon}</div>
-                  <h4 className="service-name">{service.name}</h4>
+                  <h4 className="service-name">
+                    {t(`services.ixcoders.items.${service.key}`)}
+                  </h4>
                 </div>
               ))}
             </div>
           </div>
         </div>
+
       </div>
     </section>
   );
