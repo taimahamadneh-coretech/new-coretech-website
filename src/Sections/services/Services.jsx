@@ -26,7 +26,6 @@ import {
   FaArrowRight,
 } from "react-icons/fa";
 
-/* -------------------- Data -------------------- */
 
 const companyLogos = {
   dli: delta,
@@ -56,7 +55,6 @@ const devServices = [
   { key: "support", category: "support", icon: <FaTachometerAlt /> },
 ];
 
-/* -------------------- Component -------------------- */
 
 const Services = () => {
   const { t } = useTranslation();
@@ -85,7 +83,6 @@ const Services = () => {
           <p className="section-subtitle">{t("services.sectionSubtitle")}</p>
         </div>
 
-        {/* ================== DLI ================== */}
         <div className="company-profile">
           <div className="company-header">
             <div className="company-info">
@@ -151,7 +148,6 @@ const Services = () => {
           </div>
         </div>
 
-        {/* ================== IXCoders ================== */}
         <div className="company-profile">
           <div className="company-header">
             <div className="company-info">
