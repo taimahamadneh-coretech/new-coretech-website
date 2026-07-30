@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./ScholarshipSection.css";
-
+import universityLogo from "../../assets/university.png";
+import usersLogo from "../../assets/searching.png";
+import checklistLogo from "../../assets/checklist.png";
+import starLogo from "../../assets/dart.png";
 const scholarship = {
   title: "منحة البكالوريوس لجامعات فلسطين 2026",
 
