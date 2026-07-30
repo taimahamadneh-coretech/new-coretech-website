@@ -1,0 +1,232 @@
+/* ==========================================================
+   Projects Section
+   Palette:  paper #F3F4F1 · ink #14171A · pine #2F5D50
+             pine-soft #DCE8E3 · line #D8DAD4 · muted #6B7280
+   Type:     display "Fraunces", body "Inter", mono "JetBrains Mono"
+   ========================================================== */
+
+
+.projects {
+  --paper: #f3f4f1;
+  --ink: #14171a;
+  --pine: #2f5d50;
+  --pine-soft: #dce8e3;
+  --line: #d8dad4;
+  --muted: #6b7280;
+
+  
+  color: var(--ink);
+  padding: 6rem 1.5rem;
+  font-family: "Inter", -apple-system, sans-serif;
+}
+
+.projects__container {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+/* ---------- Header ---------- */
+
+
+
+
+
+/* ---------- Grid ---------- */
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+
+@media (max-width: 900px) {
+  .projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .projects__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Card ---------- */
+
+.proj-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  
+  overflow: hidden;
+  transition: border-color 0.25s ease, transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.proj-card:hover {
+  
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px -16px rgba(20, 23, 26, 0.25);
+}
+
+.proj-card__media {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+ 
+}
+
+.proj-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.proj-card:hover .proj-card__media img {
+  transform: scale(1.04);
+}
+
+.proj-card__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.proj-card__placeholder span {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 2.5rem;
+  font-weight: 500;
+ 
+  opacity: 0.55;
+}
+
+.proj-card__body {
+  padding: 1.5rem 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.proj-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.proj-card__index {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  
+}
+
+.proj-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.proj-card__tags li {
+ 
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+  color: var( --blue-main);
+  background: var(--text-muted);
+  padding: 0.22rem 0.5rem;
+  border-radius: 3px;
+}
+
+.proj-card__title {
+  
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  margin: 0 0 0.6rem;
+}
+
+.proj-card__desc {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+  flex: 1;
+}
+/*---------------------------------*/
+.proj-card__media {
+  position: relative;
+  overflow: hidden;
+}
+
+.proj-card__media img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.slider-btn.prev {
+  left: 10px;
+}
+
+.slider-btn.next {
+  right: 10px;
+}
+
+.slider-dots {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.slider-dot.active {
+  background: white;
+  transform: scale(1.2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .proj-card,
+  .proj-card__media img,
+  .proj-card__link,
+  .proj-card__link svg {
+    transition: none;
+  }
+}

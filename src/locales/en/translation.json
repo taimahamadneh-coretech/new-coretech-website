@@ -42,6 +42,7 @@
     "about": "About",
     "partners": "Partners",
     "products": "Products",
+    "projects": "Projects",
     "services": "Services",
     "clients": "Clients",
     "contact": "Contact",
@@ -393,6 +394,25 @@
         "Builds fast secure beautiful and intelligent applications",
         "Supports customer growth data management business efficiency"
       ]
+    }
+  }
+  ,
+  "projects": {
+    "title": "Our Projects",
+
+    "poles": {
+      "title": "Wooden Utility Pole Installation",
+      "description": "Supply and installation of treated wooden utility poles for a regional power distribution upgrade, including site survey, foundation work, and line stringing."
+    },
+
+    "padel": {
+      "title": "Padel Court Construction",
+      "description": "Full build of a two-court padel facility..."
+    },
+
+    "fiber": {
+      "title": "Fiber Optic Cable Network",
+      "description": "Underground fiber cable rollout connecting three neighborhoods..."
     }
   }
 }

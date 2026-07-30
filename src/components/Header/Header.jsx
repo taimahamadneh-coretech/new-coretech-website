@@ -48,6 +48,7 @@ const Header = () => {
     { label: t('nav.about'), hash: 'about', type: 'anchor' },
     { label: t('nav.partners'), hash: 'partners', type: 'anchor' },
     { label: t('nav.products'), hash: 'products', type: 'anchor' },
+    { label: t('nav.projects'), hash: 'projects', type: 'anchor' },
     { label: t('nav.services'), hash: 'services', type: 'anchor' },
     { label: t('nav.clients'), hash: 'clients', type: 'anchor' },
     { label: t('nav.contact'), hash: 'contact', type: 'anchor' },
