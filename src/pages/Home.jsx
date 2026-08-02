@@ -22,12 +22,13 @@ export default function Home() {
       <main className="main-content">
       
         <Hero />
+        <ScholarshipSection />
         <About />
         <Map/>
         <GroupCompanies/>
         <FeaturedPartnersCardLayout />
         <Partners />
-        <ScholarshipSection />
+        
         <Products />
         <ProjectsSection />
         <Services />
