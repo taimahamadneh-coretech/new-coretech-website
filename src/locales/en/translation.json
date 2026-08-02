@@ -414,5 +414,53 @@
       "title": "Fiber Optic Cable Network",
       "description": "Underground fiber cable rollout connecting three neighborhoods..."
     }
+  },
+  
+  "scholarship": {
+    "title": "Palestinian Universities Bachelor's Scholarship 2026",
+    "applyNow": "Apply Now",
+    "timelineTitle": "Scholarship Timeline",
+
+    "universitiesTitle": "Participating Universities",
+    "lookingForTitle": "Who Are We Looking For?",
+    "requirementsTitle": "Application Requirements",
+    "whyTitle": "Why Our Scholarship?",
+
+    "universities": [
+      "Birzeit University",
+      "An-Najah National University",
+      "Al-Quds Open University"
+    ],
+
+    "lookingFor": [
+      "High school students expected to graduate during the 2026/2027 academic year.",
+      "Students with a proven record of volunteer work and community service.",
+      "Palestinian students."
+    ],
+
+    "requirements": [
+      "The applicant must be Palestinian.",
+      "The applicant must be expected to graduate from high school during the 2026/2027 academic year.",
+      "The applicant must have volunteer or community service experience supported by certificates or official documents.",
+      "The applicant must complete all application requirements before the specified deadlines."
+    ],
+
+    "whyDescription": "We believe that investing in academically outstanding and socially engaged young people is an investment in the future of Palestine. Our scholarship aims to support students who combine academic excellence, leadership, and community service by providing them with the opportunity to pursue their university education at leading Palestinian universities. We also strive to empower a new generation of leaders capable of creating a positive impact in their communities through financial support, academic excellence, and a strong culture of social responsibility.",
+
+    "timeline": [
+      {
+        "title": "Applications Close",
+        "date": "20 Aug 2026"
+      },
+      {
+        "title": "Application Review",
+        "date": "21–30 Aug 2026"
+      },
+      {
+        "title": "Results Announcement",
+        "date": "31 Aug 2026"
+      }
+    ]
   }
+
 }
