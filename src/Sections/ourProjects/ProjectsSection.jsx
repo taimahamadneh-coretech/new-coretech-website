@@ -184,7 +184,7 @@ export default function ProjectsSection({ items = projects }) {
   const { i18n } = useTranslation();
 
   return (
-    <section className="projects" id="projects " dir={i18n.language === "ar" ? "rtl" : "ltr"}>
+    <section className="projects" id="projects" dir={i18n.language === "ar" ? "rtl" : "ltr"}>
       <div className="section-container">
         <header className="section-header">
 
