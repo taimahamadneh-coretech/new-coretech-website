@@ -15,11 +15,12 @@ import padelCourt3 from "../../assets/projects/padelCourt3.jpeg";
 import fiberCable1 from "../../assets/projects/cables1.jpeg";
 import fiberCable2 from "../../assets/projects/cables2.jpeg";
 import fiberCable3 from "../../assets/projects/cables3.jpeg";
-import fiberCable4 from "../../assets/projects/cables4.jpeg";
-import fiberCable5 from "../../assets/projects/cables5.jpeg";
-import fiberCable6 from "../../assets/projects/cables6.jpeg";
-import fiberCable7 from "../../assets/projects/cables7.jpeg";
-import fiberCable8 from "../../assets/projects/cables8.jpeg";
+
+import cabent1 from "../../assets/projects/cabent1.jpeg";
+import cabent2 from "../../assets/projects/cabent2.jpeg";
+import cabent3 from "../../assets/projects/cabent3.jpeg";
+import cabent4 from "../../assets/projects/cabent4.jpeg";
+import cabent5 from "../../assets/projects/cabent5.jpeg";
 
 import "./ProjectsSection.css";
 
@@ -78,13 +79,23 @@ const projects = [
       fiberCable1,
       fiberCable2,
       fiberCable3,
-      fiberCable4,
-      fiberCable5,
-      fiberCable6,
-      fiberCable7,
-      fiberCable8,
     ],
   },
+    {
+title: { en: "Electrical Cabinets Supply", 
+  ar: "توريد صناديق الكهرباء ", },
+   description: { en: "Supply and import of electrical cabinets for power distribution and control systems, ensuring compliance with project specifications and international quality standards.", ar: "توريد واستيراد صناديق الكهرباء  الخاصة بأنظمة توزيع وتحكم الطاقة، بما يتوافق مع مواصفات المشروع ومعايير الجودة العالمية.", }, 
+   tags: { en: ["Electrical Cabinets", "2025"],
+     ar: ["صناديق الكهرباء", "٢٠٢٥"], },
+    images: [
+      cabent1,
+      cabent2,
+      cabent3,
+      cabent4,
+      cabent5,
+
+    ],
+  }
 ];
 
 function ProjectCard({ project, index }) {
@@ -184,7 +195,7 @@ export default function ProjectsSection({ items = projects }) {
   const { i18n } = useTranslation();
 
   return (
-    <section className="projects" id="projects" dir={i18n.language === "ar" ? "rtl" : "ltr"}>
+    <section className="projects" id="projects " dir={i18n.language === "ar" ? "rtl" : "ltr"}>
       <div className="section-container">
         <header className="section-header">
 
