@@ -8,9 +8,9 @@ import woodenPoles4 from "../../assets/projects/woodenPoles4.jpeg";
 import woodenPoles5 from "../../assets/projects/woodenPoles5.jpeg";
 import woodenPoles6 from "../../assets/projects/woodenPoles6.jpeg";
 
-import padelCourt1 from "../../assets/projects/padelCourt1.jpeg";
-import padelCourt2 from "../../assets/projects/padelCourt2.jpeg";
-import padelCourt3 from "../../assets/projects/padelCourt3.jpeg";
+import padelCourt1 from "../../assets/projects/padel1.jpeg";
+import padelCourt2 from "../../assets/projects/padel2.jpeg";
+import padelCourt3 from "../../assets/projects/padel3.jpeg";
 
 import fiberCable1 from "../../assets/projects/cables1.jpeg";
 import fiberCable2 from "../../assets/projects/cables2.jpeg";
@@ -21,6 +21,12 @@ import cabent2 from "../../assets/projects/cabent2.jpeg";
 import cabent3 from "../../assets/projects/cabent3.jpeg";
 import cabent4 from "../../assets/projects/cabent4.jpeg";
 import cabent5 from "../../assets/projects/cabent5.jpeg";
+import cabent6 from "../../assets/projects/cabent6.jpeg";
+import cabent7 from "../../assets/projects/cabent7.jpeg";
+import cabent8 from "../../assets/projects/cabent8.jpeg";
+import cabent9 from "../../assets/projects/cabent9.jpeg";
+import cabent10 from "../../assets/projects/cabent10.jpeg";
+import cabent11 from "../../assets/projects/cabent11.jpeg";
 
 import "./ProjectsSection.css";
 
@@ -33,10 +39,6 @@ const projects = [
     description: {
       en: "Supply  of treated wooden utility poles for a regional power distribution upgrade, including site survey, foundation work, and line stringing.",
       ar: "توريد وتركيب أعمدة كهرباء خشبية معالجة ضمن مشروع تطوير شبكة توزيع الكهرباء، ويشمل المسح الميداني، وأعمال القواعد، وتمديد خطوط الكهرباء.",
-    },
-    tags: {
-      en: ["2025"],
-      ar: [ "٢٠٢٥"],
     },
     images: [
       woodenPoles1,
@@ -56,10 +58,7 @@ const projects = [
       en: "Complete construction of a two-court padel facility including sub-base preparation, drainage, synthetic turf installation, glass and steel structure, fencing, and LED floodlighting.",
       ar: "تنفيذ مشروع متكامل لإنشاء ملعبي بادل، يشمل تجهيز البنية التحتية، ونظام تصريف المياه، وتركيب العشب الصناعي، والهيكل الزجاجي والحديدي، والأسوار، وإنارة LED.",
     },
-    tags: {
-      en: ["Nablus", "2 Courts", "2026"],
-      ar: ["نابلس", "ملعبان", "٢٠٢٦"],
-    },
+   
     images: [padelCourt1, padelCourt2, padelCourt3],
   },
   {
@@ -71,10 +70,6 @@ const projects = [
       en: "Underground fiber optic network connecting multiple neighborhoods, including trenching, duct installation, fiber splicing, testing, and commissioning.",
       ar: "تنفيذ شبكة ألياف ضوئية تحت الأرض لربط عدة مناطق، وتشمل أعمال الحفر، وتمديد القنوات، ولحام الألياف الضوئية، والاختبارات، والتشغيل النهائي.",
     },
-    tags: {
-      en: ["Regional Network", "2024"],
-      ar: ["شبكة إقليمية","٢٠٢٤"],
-    },
     images: [
       fiberCable1,
       fiberCable2,
@@ -85,14 +80,19 @@ const projects = [
 title: { en: "Electrical Cabinets Supply", 
   ar: "توريد صناديق الكهرباء ", },
    description: { en: "Supply and import of electrical cabinets for power distribution and control systems, ensuring compliance with project specifications and international quality standards.", ar: "توريد واستيراد صناديق الكهرباء  الخاصة بأنظمة توزيع وتحكم الطاقة، بما يتوافق مع مواصفات المشروع ومعايير الجودة العالمية.", }, 
-   tags: { en: ["Electrical Cabinets", "2025"],
-     ar: ["صناديق الكهرباء", "٢٠٢٥"], },
+
     images: [
       cabent1,
       cabent2,
       cabent3,
       cabent4,
       cabent5,
+      cabent6,
+      cabent7,
+      cabent8,
+      cabent9,
+      cabent10,
+      cabent11,
 
     ],
   }

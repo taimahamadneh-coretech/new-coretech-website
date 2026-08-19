@@ -71,21 +71,26 @@
 }
 
 .proj-card__media {
-  aspect-ratio: 16 / 10;
+  position: relative;
+  width: 100%;
+  height: 300px;
   overflow: hidden;
- 
+  background: #f3f4f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .proj-card__media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  transition: transform 0.4s ease;
 }
 
+/* Optional: subtle zoom without cropping */
 .proj-card:hover .proj-card__media img {
-  transform: scale(1.04);
+  transform: scale(1.02);
 }
 
 .proj-card__placeholder {
