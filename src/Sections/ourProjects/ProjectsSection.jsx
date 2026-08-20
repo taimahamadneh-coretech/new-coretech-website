@@ -28,11 +28,15 @@ import cabent9 from "../../assets/projects/cabent9.jpeg";
 import cabent10 from "../../assets/projects/cabent10.jpeg";
 import cabent11 from "../../assets/projects/cabent11.jpeg";
 
+import pilatesEquipment1 from "../../assets/projects/pilatesEquipment1.jpeg";
+import pilatesEquipment2 from "../../assets/projects/pilatesEquipment2.jpeg";
+import pilatesEquipment3 from "../../assets/projects/pilatesEquipment3.jpeg";
+
 import "./ProjectsSection.css";
 
 const projects = [
   {
-        title: {
+    title: {
       en: "Wooden Utility Pole Installation",
       ar: "تركيب أعمدة الكهرباء الخشبية",
     },
@@ -50,7 +54,7 @@ const projects = [
     ],
   },
   {
-     title: {
+    title: {
       en: "Padel Court Construction",
       ar: "إنشاء ملاعب البادل",
     },
@@ -58,11 +62,23 @@ const projects = [
       en: "Complete construction of a two-court padel facility including sub-base preparation, drainage, synthetic turf installation, glass and steel structure, fencing, and LED floodlighting.",
       ar: "تنفيذ مشروع متكامل لإنشاء ملعبي بادل، يشمل تجهيز البنية التحتية، ونظام تصريف المياه، وتركيب العشب الصناعي، والهيكل الزجاجي والحديدي، والأسوار، وإنارة LED.",
     },
-   
+
     images: [padelCourt1, padelCourt2, padelCourt3],
   },
+
   {
-     title: {
+    title: {
+      en: "Pilates Equipment Supply & Installation",
+      ar: "توريد وتركيب أجهزة البيلاتس",
+    },
+    description: {
+      en: "Complete supply and installation of professional Pilates equipment, including delivery, assembly, positioning, and full setup to ensure the facility is ready for operation.",
+      ar: "توريد وتركيب وتجهيز أجهزة البيلاتس بشكل متكامل، بما يشمل التوصيل، والتجميع، وتوزيع الأجهزة في مواقعها، وإتمام التجهيز لضمان جاهزية المنشأة للتشغيل.",
+    },
+    images: [pilatesEquipment1, pilatesEquipment2, pilatesEquipment3],
+  },
+  {
+    title: {
       en: "Fiber Optic Cable Network",
       ar: "شبكة كابلات الألياف الضوئية",
     },
@@ -70,16 +86,14 @@ const projects = [
       en: "Underground fiber optic network connecting multiple neighborhoods, including trenching, duct installation, fiber splicing, testing, and commissioning.",
       ar: "تنفيذ شبكة ألياف ضوئية تحت الأرض لربط عدة مناطق، وتشمل أعمال الحفر، وتمديد القنوات، ولحام الألياف الضوئية، والاختبارات، والتشغيل النهائي.",
     },
-    images: [
-      fiberCable1,
-      fiberCable2,
-      fiberCable3,
-    ],
+    images: [fiberCable1, fiberCable2, fiberCable3],
   },
-    {
-title: { en: "Electrical Cabinets Supply", 
-  ar: "توريد صناديق الكهرباء ", },
-   description: { en: "Supply and import of electrical cabinets for power distribution and control systems, ensuring compliance with project specifications and international quality standards.", ar: "توريد واستيراد صناديق الكهرباء  الخاصة بأنظمة توزيع وتحكم الطاقة، بما يتوافق مع مواصفات المشروع ومعايير الجودة العالمية.", }, 
+  {
+    title: { en: "Electrical Cabinets Supply", ar: "توريد صناديق الكهرباء " },
+    description: {
+      en: "Supply and import of electrical cabinets for power distribution and control systems, ensuring compliance with project specifications and international quality standards.",
+      ar: "توريد واستيراد صناديق الكهرباء  الخاصة بأنظمة توزيع وتحكم الطاقة، بما يتوافق مع مواصفات المشروع ومعايير الجودة العالمية.",
+    },
 
     images: [
       cabent1,
@@ -93,13 +107,12 @@ title: { en: "Electrical Cabinets Supply",
       cabent9,
       cabent10,
       cabent11,
-
     ],
-  }
+  },
 ];
 
 function ProjectCard({ project, index }) {
-const { i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const language = i18n.language.startsWith("ar") ? "ar" : "en";
   const number = String(index + 1).padStart(2, "0");
 
@@ -113,7 +126,7 @@ const { i18n } = useTranslation();
 
   const prevImage = () => {
     setCurrentImage((prev) =>
-      prev === 0 ? project.images.length - 1 : prev - 1
+      prev === 0 ? project.images.length - 1 : prev - 1,
     );
   };
 
@@ -151,9 +164,7 @@ const { i18n } = useTranslation();
                     <span
                       key={i}
                       className={
-                        i === currentImage
-                          ? "slider-dot active"
-                          : "slider-dot"
+                        i === currentImage ? "slider-dot active" : "slider-dot"
                       }
                       onClick={() => setCurrentImage(i)}
                     />
@@ -173,19 +184,18 @@ const { i18n } = useTranslation();
         <div className="proj-card__meta">
           <span className="proj-card__index">PRJ.{number}</span>
 
-       {project.tags?.[language]?.length > 0 && (
-  <ul className="proj-card__tags">
-    {project.tags[language].map((tag) => (
-      <li key={tag}>{tag}</li>
-    ))}
-  </ul>
-)}
+          {project.tags?.[language]?.length > 0 && (
+            <ul className="proj-card__tags">
+              {project.tags[language].map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+          )}
         </div>
 
         <h3 className="proj-card__title">{project.title[language]}</h3>
 
         <p className="proj-card__desc">{project.description[language]}</p>
-
       </div>
     </article>
   );
@@ -195,10 +205,13 @@ export default function ProjectsSection({ items = projects }) {
   const { i18n } = useTranslation();
 
   return (
-    <section className="projects" id="projects " dir={i18n.language === "ar" ? "rtl" : "ltr"}>
+    <section
+      className="projects"
+      id="projects "
+      dir={i18n.language === "ar" ? "rtl" : "ltr"}
+    >
       <div className="section-container">
         <header className="section-header">
-
           <h2 className="section-title">{i18n.t("projects.title")}</h2>
         </header>
 
