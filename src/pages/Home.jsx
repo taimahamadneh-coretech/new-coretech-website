@@ -22,7 +22,6 @@ export default function Home() {
       <main className="main-content">
       
         <Hero />
-        <ScholarshipSection />
         <About />
         <Map/>
         <GroupCompanies/>
