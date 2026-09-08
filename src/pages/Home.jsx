@@ -13,7 +13,6 @@ import GroupCompanies from '../Sections/groupCompanies/groupCompanies';
 import Games from '../Sections/games/game'
 import FeaturedPartnersCardLayout from '../Sections/FeaturedPartnrt/FeaturedPartnrt';
 import ProjectsSection from '../Sections/ourProjects/ProjectsSection';
-import ScholarshipSection from '../Sections/scholarship/ScholarshipSection';
 
 export default function Home() {
   return (
