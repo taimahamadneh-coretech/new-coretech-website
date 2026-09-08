@@ -28,6 +28,12 @@ import hascelikfiber from '../../assets/images/FeaturedPartners/hascelikfiber/ha
 import ixcoders from '../../assets/images/FeaturedPartners/ixcodersPartner/ixcoders.png'; 
 import quaildigital from '../../assets/images/FeaturedPartners/quaildigital/quaildigital.png';
 
+import cyberwiseLogo from '../../assets/images/FeaturedPartners/cyberwise/cyberwiseLogo.png';
+import cyber1 from '../../assets/images/FeaturedPartners/cyberwise/cyber1.webp';
+import cyber2 from '../../assets/images/FeaturedPartners/cyberwise/cyber2.jpg';
+import cyber3 from '../../assets/images/FeaturedPartners/cyberwise/cyber3.jpg';
+import cyber4 from '../../assets/images/FeaturedPartners/cyberwise/cyber4.jpg';
+
 const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo, startDelay }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [progress, setProgress] = useState(0);
@@ -112,6 +118,7 @@ const FeaturedPartnersCard = ({ images, texts, externalLink, companyName, logo, 
 const FeaturedPartnersCardLayout = () => {
   const { t } = useTranslation();
 
+  const cyberWise = [cyber1, cyber2, cyber3, cyber4];
   const hyteraImages = [hytera1, hytera2, hytera3, hytera4];
   const jaudaImages = [jauda1, jauda2, jauda3, jauda4];
   const hascelikImages = [hascelik1, hascelik2, hascelik3, hascelik4];
@@ -119,6 +126,7 @@ const FeaturedPartnersCardLayout = () => {
   const partner5Images = [ixcoders1, ixcoders2, ixcoders3, ixcoders4];
 
   const cards = [
+    { images: cyberWise, link: "https://cyberwise.ae/", logo: cyberwiseLogo, name: t('Featuredpartners.cyberwise.name'), texts: t('Featuredpartners.cyberwise.slides', { returnObjects: true }) },
     { images: hyteraImages, link: "https://hytera.ae/", logo: hyteraLogo, name: t('Featuredpartners.hytera.name'), texts: t('Featuredpartners.hytera.slides', { returnObjects: true }) },
     { images: jaudaImages, link: "https://www.jauda-koks.lv/", logo: jaudaLogo, name: t('Featuredpartners.jaudaKoks.name'), texts: t('Featuredpartners.jaudaKoks.slides', { returnObjects: true }) },
     { images: hascelikImages, link: "https://hascelikfiber.com.tr/", logo: hascelikfiber, name: t('Featuredpartners.hascelikTexts.name'), texts: t('Featuredpartners.hascelikTexts.slides', { returnObjects: true }) },

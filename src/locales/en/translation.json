@@ -394,7 +394,16 @@
         "Builds fast secure beautiful and intelligent applications",
         "Supports customer growth data management business efficiency"
       ]
-    }
+    },
+    "cyberwise": {
+  "name": "CyberWise",
+  "slides": [
+    "A specialized company providing cybersecurity and digital infrastructure protection solutions",
+    "Delivering advanced solutions to protect systems and data from cyber threats",
+    "Strengthening organizations through threat monitoring, detection, and response",
+    "A trusted partner in building secure and resilient digital environments"
+  ]
+}
   }
   ,
   "projects": {
