@@ -34,7 +34,7 @@ export default function Home() {
         <Games/>
         <Clients />
         <Gallery />
-        <Feedback/>
+
         <Contact />
       </main>
     </>

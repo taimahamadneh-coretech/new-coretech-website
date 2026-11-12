@@ -66,17 +66,7 @@ const projects = [
     images: [padelCourt1, padelCourt2, padelCourt3],
   },
 
-  {
-    title: {
-      en: "Pilates Equipment Supply & Installation",
-      ar: "توريد وتركيب أجهزة البيلاتس",
-    },
-    description: {
-      en: "Complete supply and installation of professional Pilates equipment, including delivery, assembly, positioning, and full setup to ensure the facility is ready for operation.",
-      ar: "توريد وتركيب وتجهيز أجهزة البيلاتس بشكل متكامل، بما يشمل التوصيل، والتجميع، وتوزيع الأجهزة في مواقعها، وإتمام التجهيز لضمان جاهزية المنشأة للتشغيل.",
-    },
-    images: [pilatesEquipment1, pilatesEquipment2, pilatesEquipment3],
-  },
+
   {
     title: {
       en: "Fiber Optic Cable Network",
