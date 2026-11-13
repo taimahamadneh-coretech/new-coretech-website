@@ -5,6 +5,16 @@
   --blue-light: #6EC1FF;
   --ice-blue: #6ef1ff;
 
+  /* Light theme */
+  --page-bg: #E9F0F9;              /* base tint, used by some components (Cool mist; original #F7F9FC) */
+  --page-bg-top: #F4F8FD;          /* "Sky fade" — top of the screen */
+  --page-bg-bottom: #DDE8F6;       /* "Sky fade" — bottom of the screen */
+  --band-light: #F5F8FC;           /* "Two-tone bands" — page colour */
+  --band-bg: rgba(30, 127, 230, 0.08); /* "Two-tone bands" — every other section (≈ #E3ECF8) */
+  --ink: #0B2A5B;                  /* main text, darker for contrast (was #0B3C8A) */
+  --ink-soft: #1E7FE6;             /* secondary text = current deep blue */
+  --network-rgb: 30, 127, 230;     /* network dots/lines (blue-deep) */
+
   --white: #FFFFFF;
   --white-soft: #EAF4FF;
   --white-light: #BFE4FF;
@@ -49,8 +59,8 @@
   --card-border-hover: rgba(54, 112, 145, 0.35);
   --card-shadow-hover: rgba(54, 112, 145, 0.18);
 
-  --vm-card-bg: rgba(234, 244, 255, 0.35);
-  --vm-card-border: rgba(110, 193, 255, 0.35);
+  --vm-card-bg: rgba(255, 255, 255, 0.8); /* was rgba(234, 244, 255, 0.35) */
+  --vm-card-border: rgba(30, 127, 230, 0.18); /* was rgba(110, 193, 255, 0.35) */
   --vm-card-border-hover: rgba(63, 169, 245, 0.6);
   --vm-text-color: #FBF5DE;
   --vm-shadow-hover: rgba(63, 169, 245, 0.25);
@@ -183,9 +193,9 @@ html {
   font-size: 2.5rem;
   margin-bottom: 10px;
   background: linear-gradient(135deg,
-    var(--white) 0%,
-    var(--white-soft) 40%,
-    var(--white-light) 100%
+    var(--blue-dark) 0%,
+    var(--blue-deep) 60%,
+    var(--blue-main) 100%
     );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -193,7 +203,7 @@ html {
 }
 
 .section-subtitle {
-  color: var(--text-muted);
+  color: var(--ink-soft);
   font-size: 1.1rem;
   max-width: 600px;
   margin: 0 auto;
@@ -262,3 +272,114 @@ html {
 .scroll-to-top:hover {
   transform: translateY(-4px);
 }
+
+/* ---------- Two-tone bands with wave edges ----------
+   Sections in page order: About · Map (band) · Software · Games · Cybersecurity (band)
+   · Telecom · Partners (band) · Brands · Clients (band) · Gallery · Contact (band).
+   Each band is drawn by a ::before layer that spans the full screen width and
+   is shaped by a mask: a wave on top, solid in the middle, a wave at the bottom.
+   The band is semi-transparent so the network stays visible.
+   To turn the waves off but keep straight bands, set --wave-h: 0px.
+   To turn the bands off completely, delete this block. */
+:root {
+  --wave-h: 0px; /* straight band edges (waves were 56px) */
+  --wave-top: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0 38 C 240 8 480 0 720 18 S 1200 52 1440 22 V60 H0 Z'/%3E%3C/svg%3E");
+  --wave-bottom: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0 H1440 V30 C 1200 58 960 60 720 40 S 240 6 0 30 Z'/%3E%3C/svg%3E");
+}
+
+.main-content {
+  overflow-x: clip; /* the full-width bands never cause sideways scrolling */
+}
+
+.main-content #Map,
+.main-content #cybersecurity,
+.main-content #partners,
+.main-content #clients,
+.main-content #contact {
+  position: relative;
+  isolation: isolate;
+}
+
+.main-content #Map::before,
+.main-content #cybersecurity::before,
+.main-content #partners::before,
+.main-content #clients::before,
+.main-content #contact::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  top: calc(var(--wave-h) * -1);
+  bottom: calc(var(--wave-h) * -1);
+  background: var(--band-bg);
+  pointer-events: none;
+  -webkit-mask:
+    var(--wave-top) top / 100% var(--wave-h) no-repeat,
+    linear-gradient(#000, #000) center / 100% calc(100% - var(--wave-h) * 2) no-repeat,
+    var(--wave-bottom) bottom / 100% var(--wave-h) no-repeat;
+  mask:
+    var(--wave-top) top / 100% var(--wave-h) no-repeat,
+    linear-gradient(#000, #000) center / 100% calc(100% - var(--wave-h) * 2) no-repeat,
+    var(--wave-bottom) bottom / 100% var(--wave-h) no-repeat;
+}
+
+/* Contact sits right above the footer: wave on top only, straight at the bottom */
+.main-content #contact::before {
+  bottom: 0;
+  -webkit-mask:
+    var(--wave-top) top / 100% var(--wave-h) no-repeat,
+    linear-gradient(#000, #000) bottom / 100% calc(100% - var(--wave-h)) no-repeat;
+  mask:
+    var(--wave-top) top / 100% var(--wave-h) no-repeat,
+    linear-gradient(#000, #000) bottom / 100% calc(100% - var(--wave-h)) no-repeat;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --wave-h: 0px; /* waves on phones were 32px */
+  }
+}
+
+/* ---------- Reveal on scroll (classes added by Home.jsx) ---------- */
+.rv {
+  opacity: 0;
+  transform: translateY(36px) scale(0.98);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.rv.rv-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Stacking: About slides up over the Hero ---------- */
+.hero-stack {
+  position: relative;
+}
+
+.hero-stack > #home {
+  position: sticky;
+  top: 0;
+  z-index: 0;
+}
+
+.hero-stack > #about {
+  position: relative;
+  z-index: 1;
+  background: var(--band-light, #F5F8FC);
+  border-radius: 32px 32px 0 0;
+  box-shadow: 0 -20px 45px rgba(11, 42, 91, 0.22);
+  padding-top: 40px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stack > #home {
+    position: relative;
+  }
+}
+

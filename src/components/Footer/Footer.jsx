@@ -1,167 +1,138 @@
 import React from 'react';
 import logo from '../../assets/logo/logo_white.png';
 import { useNavigate, useLocation } from 'react-router-dom';
- 
 import './footer.css';
 import { useTranslation } from 'react-i18next';
- 
 import {
   FaFacebookF,
   FaLinkedinIn,
+  FaInstagram,
   FaMapMarkerAlt,
   FaEnvelope,
   FaGlobe,
   FaPhoneAlt,
+  FaArrowUp,
 } from 'react-icons/fa';
- 
+
+// Previous footer is kept in Footer.old.jsx.txt and footer.old.css (not used).
+
+const socialMediaLinks = [
+  { name: 'Facebook', icon: FaFacebookF, url: 'https://www.facebook.com/share/1RKsAy2nF3/' },
+  { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/coretech-pal/' },
+  { name: 'Instagram', icon: FaInstagram, url: 'https://www.instagram.com/coretechtel/' },
+];
+
+const quickLinks = [
+  { label: 'footer.quickLinks.home', hash: 'home' },
+  { label: 'footer.quickLinks.about', hash: 'about' },
+  { label: 'footer.quickLinks.clients', hash: 'clients' },
+  { label: 'footer.quickLinks.contact', hash: 'contact' },
+  { label: 'footer.quickLinks.career', path: '/careers' },
+];
+
+const fieldLinks = [
+  { label: 'nav.software', hash: 'software' },
+  { label: 'nav.cyber', hash: 'cybersecurity' },
+  { label: 'nav.telecom', hash: 'telecom' },
+];
+
 function Footer() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-const location = useLocation();
- 
-  const socialMediaLinks = [
-    {
-      name: 'Facebook',
-      icon: FaFacebookF,
-      url: 'https://www.facebook.com/p/Coretech-61557547092075/',
-    },
-    {
-      name: 'LinkedIn',
-      icon: FaLinkedinIn,
-      url: 'https://www.linkedin.com/company/coretechpal/',
-    },
-    // {
-    //   name: 'Instagram',
-    //   icon: FaInstagram,
-    //   url: 'https://instagram.com/coretechpal',
-    // },
-  ];
-  
- const quickLinks = [
-  { key: 'home', hash: 'home' },
-  { key: 'about', hash: 'about' },
-  { key: 'products', hash: 'products' },
-  { key: 'services', hash: 'services' },
-  { key: 'clients', hash: 'clients' },
-  { key: 'contact', hash: 'contact' },
-  { key: 'career', path: '/careers' },
-];
-const handleFooterLink = (hash) => {
-  if (location.pathname !== '/') {
-    navigate('/');
- 
-    setTimeout(() => {
-      const el = document.getElementById(hash);
-      el?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
-  } else {
-    const el = document.getElementById(hash);
-    el?.scrollIntoView({ behavior: 'smooth' });
-  }
-};
+  const location = useLocation();
+
+  // Scroll to a home-page section (goes to the home page first if needed)
+  const goToSection = (e, hash) => {
+    e.preventDefault();
+    const scroll = () => document.getElementById(hash)?.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(scroll, 100);
+    } else {
+      scroll();
+    }
+  };
+
+  const goToPage = (e, path) => {
+    e.preventDefault();
+    navigate(path);
+    window.scrollTo({ top: 0 });
+  };
+
+  const backToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const renderLink = (link) =>
+    link.path ? (
+      <a href={link.path} onClick={(e) => goToPage(e, link.path)}>{t(link.label)}</a>
+    ) : (
+      <a href={`/#${link.hash}`} onClick={(e) => goToSection(e, link.hash)}>{t(link.label)}</a>
+    );
+
   return (
-    <footer className="footer section">
+    <footer className="footer">
       <div className="footer-container">
- 
+        {/* Brand */}
         <div className="footer-column footer-brand">
-          <div className="footer-logo">
-            <img src={logo} alt="Coretech Logo" />
-          </div>
- 
-          <p className="footer-description">
-            {t('footer.description')}
-          </p>
- 
-          <div className="social-icons">
-            {socialMediaLinks.map((social) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon"
-                  aria-label={social.name}
-                >
-                  <Icon size={20} />
-                </a>
-              );
-            })}
+          <img className="footer-logo" src={logo} alt="Coretech" />
+          <p className="footer-description">{t('footer.description')}</p>
+          <div className="footer-social">
+            {socialMediaLinks.map(({ name, icon: Icon, url }) => (
+              <a key={name} href={url} target="_blank" rel="noopener noreferrer" aria-label={name}>
+                <Icon size={16} />
+              </a>
+            ))}
           </div>
         </div>
- 
-<div className="footer-column">
-  <h3 className="footer-title">{t('footer.quickLinks.title')}</h3>
- 
-  <ul className="footer-links">
-    {quickLinks.map((link) => (
-      <li key={link.key}>
-        {link.path ? (
-          <a href={link.path}>
-            {t(`footer.quickLinks.${link.key}`)}
-          </a>
-        ) : (
-          <a
-            href={`/#${link.hash}`}
-            onClick={(e) => handleFooterLink(e, link.hash)}
-          >
-            {t(`footer.quickLinks.${link.key}`)}
-          </a>
-        )}
-      </li>
-    ))}
-  </ul>
-</div>
- 
- 
-        <div className="footer-column">
-          <h3 className="footer-title">{t('footer.services.title')}</h3>
+
+        {/* Quick links */}
+        <nav className="footer-column" aria-label={t('footer.quickLinks.title')}>
+          <h3 className="footer-title">{t('footer.quickLinks.title')}</h3>
           <ul className="footer-links">
-            <li><a href="#products">{t('footer.services.telecom')}</a></li>
-            <li><a href="#services">{t('footer.services.cyber')}</a></li>
-            <li><a href="#services">{t('footer.services.software')}</a></li>
-            <li><a href="#services">{t('footer.services.cloud')}</a></li>
-            <li><a href="#services">{t('footer.services.consulting')}</a></li>
+            {quickLinks.map((link) => <li key={link.label}>{renderLink(link)}</li>)}
           </ul>
- 
-        </div>
- 
+        </nav>
+
+        {/* Our fields */}
+        <nav className="footer-column" aria-label={t('footer.fieldsTitle')}>
+          <h3 className="footer-title">{t('footer.fieldsTitle')}</h3>
+          <ul className="footer-links">
+            {fieldLinks.map((link) => <li key={link.label}>{renderLink(link)}</li>)}
+          </ul>
+        </nav>
+
+        {/* Contact */}
         <div className="footer-column">
           <h3 className="footer-title">{t('footer.contact.title')}</h3>
- 
-          <div className="contact-details">
-            <div className="contact-item">
-              <FaMapMarkerAlt />
-              <p>{t('footer.contact.address')}</p>
-            </div>
- 
-            <div className="contact-item">
-              <FaEnvelope />
-              <p>{t('footer.contact.email')}</p>
-            </div>
- 
-            <div className="contact-item">
-              <FaGlobe />
-              <p>{t('footer.contact.website')}</p>
-            </div>
- 
-            <div className="contact-item">
-              <FaPhoneAlt />
-              <p>{t('footer.contact.phone')}</p>
-            </div>
-          </div>
+          <ul className="footer-contact">
+            <li>
+              <FaMapMarkerAlt aria-hidden="true" />
+              <a href="/#contact" onClick={(e) => goToSection(e, 'contact')}>{t('footer.contact.address')}</a>
+            </li>
+            <li>
+              <FaEnvelope aria-hidden="true" />
+              <a href={`mailto:${t('footer.contact.email')}`}>{t('footer.contact.email')}</a>
+            </li>
+            <li>
+              <FaGlobe aria-hidden="true" />
+              <a href="https://www.coretechpal.com" target="_blank" rel="noopener noreferrer">{t('footer.contact.website')}</a>
+            </li>
+            <li>
+              <FaPhoneAlt aria-hidden="true" />
+              <a href="tel:+97092368180" dir="ltr">{t('footer.contact.phone')}</a>
+            </li>
+          </ul>
         </div>
- 
       </div>
- 
+
+      {/* Bottom bar */}
       <div className="footer-bottom">
-        <p className="footer-copy">
-          © {new Date().getFullYear()} {t('footer.copyright')}
-        </p>
+        <p className="footer-copy">© {new Date().getFullYear()} {t('footer.copyright')}</p>
+        <button type="button" className="footer-top" onClick={backToTop}>
+          {t('footer.backToTop')} <FaArrowUp aria-hidden="true" />
+        </button>
       </div>
     </footer>
   );
 }
- 
+
 export default React.memo(Footer);

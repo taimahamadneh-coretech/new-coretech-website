@@ -34,7 +34,7 @@ import pilatesEquipment3 from "../../assets/projects/pilatesEquipment3.jpeg";
 
 import "./ProjectsSection.css";
 
-const projects = [
+export const projects = [
   {
     title: {
       en: "Wooden Utility Pole Installation",
@@ -101,7 +101,7 @@ const projects = [
   },
 ];
 
-function ProjectCard({ project, index }) {
+export function ProjectCard({ project, index }) {
   const { i18n } = useTranslation();
   const language = i18n.language.startsWith("ar") ? "ar" : "en";
   const number = String(index + 1).padStart(2, "0");

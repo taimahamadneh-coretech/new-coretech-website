@@ -1,15 +1,88 @@
-.contact-content {
+/* ---------- Quick-contact cards ---------- */
+.ct-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.ct-card {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6px;
+  padding: 22px 16px;
+  border-radius: 16px;
+  background: var(--white);
+  border: 1px solid rgba(30, 127, 230, 0.15);
+  box-shadow: 0 8px 24px rgba(11, 60, 138, 0.08);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.ct-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 32px rgba(11, 60, 138, 0.14);
+  border-color: rgba(30, 127, 230, 0.35);
+}
+
+.ct-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  margin-top: 40px;
+  background: linear-gradient(135deg, var(--blue-dark), var(--blue-deep));
+  color: var(--white);
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+}
+
+.ct-label {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--blue-deep);
+}
+
+.ct-value {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* ---------- Map + form ---------- */
+.contact-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+  align-items: stretch;
+}
+
+.ct-map {
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 420px;
+  background: var(--white);
+  border: 1px solid rgba(30, 127, 230, 0.15);
+  box-shadow: 0 8px 24px rgba(11, 60, 138, 0.08);
+}
+
+.ct-map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  border: 0;
+  display: block;
 }
 
 .contact-form {
-   max-width: 780px; 
   width: 100%;
   background: var(--vm-card-bg);
   border-radius: 16px;
-  padding: 40px;
+  padding: 30px;
   border: 1px solid var(--vm-card-border);
   box-shadow: 0 10px 30px var(--form-shadow);
 }
@@ -270,3 +343,39 @@
   margin-top: 5px;
   display: block;
 }
+
+/* ---------- Responsive (map + cards) ---------- */
+@media (max-width: 900px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+  }
+
+  .ct-map,
+  .ct-map iframe {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ct-cards {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .ct-card {
+    flex-direction: row;
+    text-align: start;
+    gap: 14px;
+    padding: 14px 16px;
+  }
+
+  .ct-icon {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .ct-label {
+    min-width: 90px;
+  }
+}
+

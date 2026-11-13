@@ -38,7 +38,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
 
   const validators = {
     email: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-    mobile: /^05\d{8}$/,
+    mobile: /^(\+\d{8,15}|0\d{8,10})$/, // local 05xxxxxxxx or international +970…
     universityGpa: /^(4(\.0{1,2})?|([0-3])(\.\d{1,2})?|0(\.\d{1,2})?)$/,
   };
 
@@ -75,7 +75,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    const sanitized = name === "mobile" ? value.replace(/\D/g, "") : value;
+    const sanitized = name === "mobile" ? value.replace(/[^\d+]/g, "").replace(/(?!^)\+/g, "") : value;
     setForm({ ...form, [name]: sanitized });
     
     if (name !== "skills" && name !== "languages") {
@@ -104,10 +104,6 @@ export default function CareerForm({ onCancel, jobTitle }) {
   const addField = (type) => {
     if (type === "degrees") {
       setForm({ ...form, degrees: [...form.degrees, { degreeName: "", universityGpa: "", qualificationLevel: "" }] });
-      setForm(prev => ({
-        ...prev,
-        skillLevels: [...prev.skillLevels, "intermediate"]
-      }));
     } else if (type === "experiences") {
       setForm({ ...form, experiences: [...form.experiences, {
         jobTitle: "",
@@ -137,10 +133,6 @@ export default function CareerForm({ onCancel, jobTitle }) {
   const removeField = (type, index) => {
     if (type === "degrees") {
       setForm({ ...form, degrees: form.degrees.filter((_, i) => i !== index) });
-      setForm(prev => ({
-        ...prev,
-        skillLevels: prev.skillLevels.filter((_, i) => i !== index)
-      }));
     } else if (type === "experiences") {
       setForm({ ...form, experiences: form.experiences.filter((_, i) => i !== index) });
     } else if (type === "skills") {
@@ -214,21 +206,51 @@ export default function CareerForm({ onCancel, jobTitle }) {
     if (!isStepValid()) return;
 
     setLoading(true);
+    const fullName = `${form.firstName} ${form.lastName}`.trim();
+    const payload = {
+      _subject: `Job application: ${form.jobTitle || "General"} — ${fullName}`,
+      "Applying for": form.jobTitle,
+      "Full name": fullName,
+      email: form.email, // Formspree uses this as the reply-to address
+      Mobile: form.mobile,
+      Location: [form.city, form.country].filter(Boolean).join(", "),
+      "Tawjihi GPA": form.tawjihiGpa || "-",
+      Education: form.degrees
+        .map((d, i) => `${i + 1}. ${d.degreeName} (${d.qualificationLevel || "-"})${d.universityGpa ? `, GPA ${d.universityGpa}` : ""}`)
+        .join("\n"),
+      Experience: form.experiences
+        .filter((x) => x.jobTitle || x.company)
+        .map((x, i) => {
+          const from = [x.startMonth, x.startYear].filter(Boolean).join("/");
+          const to = x.currentlyWorking ? "Present" : [x.endMonth, x.endYear].filter(Boolean).join("/");
+          return `${i + 1}. ${x.jobTitle} at ${x.company} (${from || "?"} – ${to || "?"})${x.description ? `\n   ${x.description}` : ""}`;
+        })
+        .join("\n") || "-",
+      Skills: form.skills.map((sk, i) => `${sk} (${form.skillLevels[i] || "-"})`).join(", "),
+      Languages: form.languages.map((l, i) => `${l} (${form.languageLevels[i] || "-"})`).join(", "),
+    };
     try {
       const res = await fetch("https://formspree.io/f/xqargeeg", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(payload),
       });
 
       setModal({
         open: true,
+        success: res.ok,
         message: res.ok ? t("careers.applicationSuccessForm") : t("careers.applicationFailedForm"),
       });
     } catch {
-      setModal({ open: true, message: t("careers.networkError") });
+      setModal({ open: true, success: false, message: t("careers.networkError") });
     }
     setLoading(false);
+  };
+
+  const closeModal = () => {
+    const wasSuccess = modal.success;
+    setModal({ open: false, message: "" });
+    if (wasSuccess && onCancel) onCancel();
   };
 
   const renderInput = (name, placeholder, type = "text") => (
@@ -252,24 +274,35 @@ export default function CareerForm({ onCancel, jobTitle }) {
           <div className="careers-modal">
             <button 
               className="careers-modal-close" 
-              onClick={() => setModal({ open: false, message: "" })}
+              onClick={closeModal}
               aria-label="Close"
             >
               ×
             </button>
             <p>{modal.message}</p>
-            <button onClick={() => setModal({ open: false, message: "" })}>{t("careers.ok")}</button>
+            <button onClick={closeModal}>{t("careers.ok")}</button>
           </div>
         </div>
       )}
 
       <div className="careers-form-wrapper">
         <form className="careers-form" onSubmit={handleSubmit}>
-          <div className="careers-form-tabs">
+          {/* Numbered stepper + progress bar */}
+          <div className="cf-stepper">
             {[t("careers.tab.personal"), t("careers.tab.education"), t("careers.tab.experience"), t("careers.tab.skills")]
-              .map((tLabel, i) => (
-                <div key={i} className={`careers-tab ${step === i ? "active" : ""}`}>{tLabel}</div>
+              .map((label, i) => (
+                <div
+                  key={i}
+                  className={`cf-step ${step === i ? "is-active" : ""} ${i < step ? "is-done" : ""}`}
+                  aria-current={step === i ? "step" : undefined}
+                >
+                  <span className="cf-step-num">{i < step ? "✓" : i + 1}</span>
+                  <span className="cf-step-label">{label}</span>
+                </div>
             ))}
+          </div>
+          <div className="cf-progress" aria-hidden="true">
+            <span style={{ width: `${((step + 1) / 4) * 100}%` }} />
           </div>
 
           {step === 0 && (
@@ -277,7 +310,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
               {renderInput("firstName", t("careers.firstName"))}
               {renderInput("lastName", t("careers.lastName"))}
               {renderInput("email", t("careers.email"))}
-              {renderInput("mobile", t("careers.mobile"), "text")}
+              {renderInput("mobile", t("careers.mobile"), "tel")}
               {renderInput("country", t("careers.country"))}
               {renderInput("city", t("careers.city"))}
             </div>
@@ -406,7 +439,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
                           value={experience.jobTitle || ""}
                           onChange={(e) => {
                             const experiences = [...form.experiences];
-                            experiences[index].jobTitle = e.target.value;
+                            experiences[index] = { ...experiences[index], jobTitle: e.target.value };
                             setForm({...form, experiences: experiences});
                           }}
                           placeholder={t("careers.jobTitlePlaceholder")}
@@ -419,7 +452,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
                           value={experience.company || ""}
                           onChange={(e) => {
                             const experiences = [...form.experiences];
-                            experiences[index].company = e.target.value;
+                            experiences[index] = { ...experiences[index], company: e.target.value };
                             setForm({...form, experiences: experiences});
                           }}
                           placeholder={t("careers.companyPlaceholder")}
@@ -433,7 +466,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
                             value={experience.startMonth || ""}
                             onChange={(e) => {
                               const experiences = [...form.experiences];
-                              experiences[index].startMonth = e.target.value;
+                              experiences[index] = { ...experiences[index], startMonth: e.target.value };
                               setForm({...form, experiences: experiences});
                             }}
                             className="month-select"
@@ -457,7 +490,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
                             value={experience.startYear || ""}
                             onChange={(e) => {
                               const experiences = [...form.experiences];
-                              experiences[index].startYear = e.target.value;
+                              experiences[index] = { ...experiences[index], startYear: e.target.value };
                               setForm({...form, experiences: experiences});
                             }}
                             className="year-select"
@@ -478,7 +511,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
                             value={experience.endMonth || ""}
                             onChange={(e) => {
                               const experiences = [...form.experiences];
-                              experiences[index].endMonth = e.target.value;
+                              experiences[index] = { ...experiences[index], endMonth: e.target.value };
                               setForm({...form, experiences: experiences});
                             }}
                             className="month-select"
@@ -503,7 +536,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
                             value={experience.endYear || ""}
                             onChange={(e) => {
                               const experiences = [...form.experiences];
-                              experiences[index].endYear = e.target.value;
+                              experiences[index] = { ...experiences[index], endYear: e.target.value };
                               setForm({...form, experiences: experiences});
                             }}
                             className="year-select"
@@ -524,10 +557,10 @@ export default function CareerForm({ onCancel, jobTitle }) {
                             checked={experience.currentlyWorking || false}
                             onChange={(e) => {
                               const experiences = [...form.experiences];
-                              experiences[index].currentlyWorking = e.target.checked;
+                              experiences[index] = { ...experiences[index], currentlyWorking: e.target.checked };
                               if (e.target.checked) {
-                                experiences[index].endMonth = "";
-                                experiences[index].endYear = "";
+                                experiences[index] = { ...experiences[index], endMonth: "" };
+                                experiences[index] = { ...experiences[index], endYear: "" };
                               }
                               setForm({...form, experiences: experiences});
                             }}
@@ -545,7 +578,7 @@ export default function CareerForm({ onCancel, jobTitle }) {
                         value={experience.description || ""}
                         onChange={(e) => {
                           const experiences = [...form.experiences];
-                          experiences[index].description = e.target.value;
+                          experiences[index] = { ...experiences[index], description: e.target.value };
                           setForm({...form, experiences: experiences});
                         }}
                         placeholder={t("careers.descriptionPlaceholder")}

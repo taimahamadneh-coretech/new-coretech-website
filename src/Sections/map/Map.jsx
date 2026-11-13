@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import "./map.css";
 import { mapPaths } from "./mapData";
 import { useTranslation } from 'react-i18next';
@@ -9,12 +9,6 @@ const Map = () => {
   const [hovered, setHovered] = useState(null);
   const [tooltip, setTooltip] = useState({ x: 0, y: 0 });
 
-  const [projects, setProjects] = useState(0);
-  const [expansion, setExpansion] = useState(0);
-  const [Partners, setPartners] = useState(0);
-
-  const countersRef = useRef(null);
-  const hasStarted = useRef(false);
 
   const ALWAYS_GREEN = [
     "Palestine",
@@ -36,35 +30,6 @@ const Map = () => {
     "Qatar"
 
   ];
- useEffect(() => {
-  const observer = new IntersectionObserver(
-    ([entry]) => {
-      if (entry.isIntersecting && !hasStarted.current) {
-        hasStarted.current = true;
-
-        const startCounter = (end, setter) => {
-          let count = 0;
-          const interval = setInterval(() => {
-            count++;
-            setter(count);
-            if (count === end) clearInterval(interval);
-          }, 30);
-        };
-
-        startCounter(100, setProjects);
-        startCounter(20, setExpansion);
-        startCounter(22, setPartners);
-      }
-    },
-    { threshold: 0.4 }
-  );
-
-  if (countersRef.current) {
-    observer.observe(countersRef.current);
-  }
-
-  return () => observer.disconnect();
-}, []);
 
 
   return (
@@ -112,11 +77,14 @@ const Map = () => {
                 }}
                 onMouseLeave={() => setHovered(null)}
                 style={{
-                  fill: isAlwaysGreen
-                    ? "#94b4e1ff"
-                    : isHovered
-                      ? "#ffb6c1"
-                      : "#ececec",
+                  fill: isHovered
+                    ? "#0B3C8A"   /* hover = blue-dark */
+                    : isAlwaysGreen
+                      ? "#1E7FE6" /* our markets = blue-deep */
+                      : "#DCE8F7", /* other countries = soft blue tint */
+                  stroke: "#F7F9FC",
+                  strokeWidth: 0.6,
+                  transition: "fill 0.2s ease",
                   cursor: "pointer"
                 }}
               />
@@ -124,22 +92,6 @@ const Map = () => {
           })
         )}
       </svg>
-<div className="map-counters" ref={countersRef}>
-  <div className="counter-box">
-    <h3 className="counter-number">+{projects}</h3>
-    <p className="counter-title">{t('map.projects')}</p>
-  </div>
-
-  <div className="counter-box">
-    <h3 className="counter-number">+{expansion}</h3>
-    <p className="counter-title">{t('map.expansion')}</p>
-  </div>
-
-  <div className="counter-box">
-    <h3 className="counter-number">+{Partners}</h3>
-    <p className="counter-title">{t('map.partners')}</p>
-  </div>
-</div>
     </section>
   );
 };

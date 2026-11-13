@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './header.css';
 import logo from '../../assets/logo/logo_white.png';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,42 @@ const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === '/';
+
+  // Navbar theme follows the section under it:
+  // sections with data-nav="dark" (e.g. the Hero video) → white navbar,
+  // everything else → light navbar with blue text.
+  const headerRef = useRef(null);
+  const [navTheme, setNavTheme] = useState('dark');
+
+  useEffect(() => {
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const probeY = (headerRef.current?.offsetHeight || 70) / 2;
+      let theme = 'light';
+      document.querySelectorAll('[data-nav]').forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top <= probeY && r.bottom > probeY) theme = el.dataset.nav;
+      });
+      setNavTheme(theme);
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    requestAnimationFrame(update);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [location.pathname]);
  
   useEffect(() => {
     const handleResize = () => {
@@ -46,10 +82,9 @@ const Header = () => {
   const menuItems = [
     { label: t('nav.home'), to: '/', type: 'route' },
     { label: t('nav.about'), hash: 'about', type: 'anchor' },
-    { label: t('nav.partners'), hash: 'partners', type: 'anchor' },
-    { label: t('nav.products'), hash: 'products', type: 'anchor' },
-    { label: t('nav.projects'), hash: 'projects', type: 'anchor' },
-    { label: t('nav.services'), hash: 'services', type: 'anchor' },
+    { label: t('nav.software'), hash: 'software', type: 'anchor' },
+    { label: t('nav.cyber'), hash: 'cybersecurity', type: 'anchor' },
+    { label: t('nav.telecom'), hash: 'telecom', type: 'anchor' },
     { label: t('nav.clients'), hash: 'clients', type: 'anchor' },
     { label: t('nav.contact'), hash: 'contact', type: 'anchor' },
     { label: t('nav.career'), to: '/careers', type: 'route' },
@@ -71,7 +106,7 @@ const Header = () => {
   };
  
   return (
-    <header className="header">
+    <header ref={headerRef} className={`header nav-${navTheme}`}>
       <div className="header-container">
         <div className="logo">
           <Link to="/">

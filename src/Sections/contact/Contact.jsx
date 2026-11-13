@@ -3,6 +3,16 @@ import './contact.css';
 import { useTranslation } from 'react-i18next';
 import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
+import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt } from 'react-icons/fa';
+
+// Office location for the map + "Visit us" card
+// Our office is in the Macca Mall building (Plus code 67F2+GPG, Rafidia Street).
+// The map searches the building by name, centred on its exact coordinates.
+// If the name ever shows the wrong place, set MAP_QUERY = MAP_COORDS.
+const MAP_COORDS = '32.223813,35.251828';
+const MAP_QUERY = 'Macca Mall, Rafidia Street, Nablus';
+const EMAIL = 'info@coretechpal.com';
+const PHONE_TEL = '+97092368180';
 
 const FormPopup = ({ isOpen, type, message, onClose }) => {  
   useEffect(() => {
@@ -209,7 +219,42 @@ const Contact = () => {
             <p className="section-subtitle">{t('contact.sectionSubtitle')}</p>
           </div>
 
+          {/* Quick-contact cards */}
+          <div className="ct-cards">
+            <a
+              className="ct-card"
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(MAP_QUERY)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="ct-icon" aria-hidden="true"><FaMapMarkerAlt /></span>
+              <span className="ct-label">{t('contact.visitUs')}</span>
+              <span className="ct-value">{t('footer.contact.address')}</span>
+            </a>
+            <a className="ct-card" href={`mailto:${EMAIL}`}>
+              <span className="ct-icon" aria-hidden="true"><FaEnvelope /></span>
+              <span className="ct-label">{t('contact.emailUs')}</span>
+              <span className="ct-value">{EMAIL}</span>
+            </a>
+            <a className="ct-card" href={`tel:${PHONE_TEL}`}>
+              <span className="ct-icon" aria-hidden="true"><FaPhoneAlt /></span>
+              <span className="ct-label">{t('contact.callUs')}</span>
+              <span className="ct-value" dir="ltr">{t('footer.contact.phone')}</span>
+            </a>
+          </div>
+
           <div className="contact-content">
+            {/* Office map (free Google embed, no API key) */}
+            <div className="ct-map">
+              <iframe
+                title={t('contact.mapTitle')}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(MAP_QUERY)}&ll=${MAP_COORDS}&hl=${i18n.language === 'ar' ? 'ar' : 'en'}&z=17&output=embed`}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+
             <form onSubmit={handleSubmit} className="contact-form" dir={i18n.language === 'ar' ? 'rtl' : 'ltr'}>
               <h3>{t('contact.formTitle')}</h3>
 

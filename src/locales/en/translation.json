@@ -9,6 +9,8 @@
   },
   "footer": {
     "description": "Your trusted partner for end-to-end telecom infrastructure, cybersecurity, and AI-driven software development.",
+    "fieldsTitle": "Our Fields",
+    "backToTop": "Back to top",
     "quickLinks": {
       "title": "Quick Links",
       "home": "Home",
@@ -40,6 +42,9 @@
   "nav": {
     "home": "Home",
     "about": "About",
+    "software": "Software Development",
+    "cyber": "Cybersecurity",
+    "telecom": "Telecommunication",
     "partners": "Partners",
     "products": "Products",
     "projects": "Projects",
@@ -52,7 +57,9 @@
     "sectionTitle": "About Us",
     "cardTitle": "Overview",
     "visionTitle": "Vision",
-    "missionTitle": "Mission"
+    "missionTitle": "Mission",
+    "readMore": "Read more",
+    "readLess": "Show less"
   },
   "clients": {
     "sectionTitle": "Our Clients",
@@ -72,6 +79,10 @@
   "contact": {
     "sectionTitle": "Contact Us",
     "sectionSubtitle": "Get in touch for innovative solutions",
+    "visitUs": "Visit us",
+    "emailUs": "Email us",
+    "callUs": "Call us",
+    "mapTitle": "CoreTech office location on the map",
     "infoTitle": "Contact Information",
     "emailLabel": "Email:",
     "addressLabel": "Address:",
@@ -135,7 +146,41 @@
         "specialized": "Specialized Cyber Security Solutions",
         "monitoring": "Security Monitoring & Reporting",
         "optimization": "IT Optimization",
-        "backup": "Data & Email Backup"
+        "backup": "Data & Email Backup",
+        "techConsulting": "Technology Consulting",
+        "techManagement": "Technology Management Services",
+        "professional": "Professional Services",
+        "securityConsulting": "Security Consulting",
+        "managed": "Managed Services",
+        "outsource": "Outsource",
+        "projectManagement": "Project Management",
+        "installation": "Installation, Commissioning & Maintenance Support",
+        "securityAudit": "Security Audit",
+        "gapAnalysis": "Compliance Gap Analysis",
+        "vulnerability": "Vulnerability Management & Penetration Testing"
+      },
+      "desc": {
+        "endpoint": "Protect every device connected to your network.",
+        "assessment": "Find weak points before attackers do.",
+        "enterprise": "End-to-end cybersecurity for organizations of every size.",
+        "specialized": "Security solutions tailored to your sector and risks.",
+        "monitoring": "Continuous visibility over threats, with clear reporting.",
+        "securityAudit": "Ensure compliance with global and local cybersecurity standards and regulations.",
+        "gapAnalysis": "Proactively identify compliance gaps and ensure full regulatory alignment.",
+        "vulnerability": "Manage cyber risks proactively and secure your compliance posture.",
+        "techConsulting": "Invest in the right technologies for an efficient, secure, and cost-effective infrastructure.",
+        "securityConsulting": "Minimize risks and ensure compliance with proactive, regulatory-aligned strategies.",
+        "techManagement": "A proactive approach that covers all areas of cybersecurity, today and tomorrow.",
+        "professional": "Support from certified experts for security design, operation, and optimization.",
+        "managed": "Leave operations to our experts: 24/7 protection, full compliance, maximum efficiency.",
+        "outsource": "Certified professionals to strengthen your security while optimizing personnel costs.",
+        "projectManagement": "Complete cybersecurity projects in line with industry standards and at peak efficiency.",
+        "installation": "From installation and deployment to maintenance and support, handled by our experts.",
+        "network": "Secure the traffic and connections across your network.",
+        "access": "Give the right people the right access, and nothing more.",
+        "optimization": "Faster, leaner, and more reliable IT operations.",
+        "data": "Keep your sensitive data protected wherever it lives.",
+        "backup": "Never lose critical data or email, with reliable backups."
       }
     },
 
@@ -198,7 +243,9 @@
     "sub-title": "Connecting Markets Worldwide",
     "projects": "Projects",
     "expansion": "Expansion",
-    "partners": "Partners"
+    "partners": "Partners",
+    "legendMarkets": "Our markets",
+    "dragHint": "Drag to explore"
   },
   "groupCompanies": {
     "title": "Sister Companies",
@@ -214,6 +261,15 @@
   },
 
   "careers": {
+    "perks": {
+      "title": "Why join CoreTech?",
+      "growthTitle": "Grow with us",
+      "growthText": "Learn new technologies and take on real responsibility from day one.",
+      "flexTitle": "Flexible work",
+      "flexText": "Remote-friendly roles and flexible working arrangements.",
+      "teamTitle": "A great team",
+      "teamText": "Work alongside experts in telecom, cybersecurity and software."
+    },
     "salesExecutive": "Sales Executive",
     "remote": "Remote",
     "contract": "Contract",
@@ -256,7 +312,7 @@
     "ok": "OK",
     "requiredField": "This field is required",
     "invalidEmail": "Please enter a valid email address",
-    "invalidPhone": "Please enter a valid mobile number (05xxxxxxxx)",
+    "invalidPhone": "Please enter a valid mobile number (e.g. 0599123456 or +970599123456)",
     "invalidTawjihi": "Please enter a valid Tawjihi GPA (0-100)",
     "invalidUniversityGpa": "Please enter a valid University GPA (0-4)",
     "invalidNumber": "Please enter a valid number",
@@ -470,6 +526,45 @@
         "date": "31 Aug 2026"
       }
     ]
+  },
+  "software": {
+    "tag": "Our fields",
+    "title": "Software Development",
+    "description": "We design and build custom web and mobile applications, backed by secure, scalable infrastructure and ongoing support, from the first idea to launch and beyond.",
+    "cta": "Start a project",
+    "clientsTitle": "Our clients",
+    "items": {
+      "web": "Web Applications",
+      "mobile": "Mobile Applications",
+      "database": "Database Solutions",
+      "servers": "Servers Management",
+      "security": "Systems Security",
+      "uiux": "UI/UX Design",
+      "support": "Maintenance & Support"
+    }
+  },
+  "cyber": {
+    "title": "Cybersecurity",
+    "subtitle": "Protecting organizations across the region through our sister company and trusted partners.",
+    "since": "Since 2006",
+    "partner": "Partner",
+    "visit": "Visit website",
+    "clientsTitle": "Our clients",
+    "groupServices": "Consulting & Managed Services"
+  },
+  "telecom": {
+    "title": "Telecommunication",
+    "subtitle": "Telecom infrastructure and communication solutions, supplied end-to-end through our sister company.",
+    "badgeSister": "Sister company",
+    "badgeSupply": "Supply & import",
+    "badgeLogistics": "Customs & logistics",
+    "primerDesc": "Our sister company that handles all of CoreTech's supply: sourcing, import, customs clearance, and delivery by air, sea, and land. Every product and project below is supplied through Primer Comercio.",
+    "visit": "Visit website",
+    "productsTitle": "Products",
+    "tabFixed": "Fixed line",
+    "tabRadio": "Radio & communications",
+    "projectsTitle": "Projects",
+    "suppliedBy": "Supplied by Primer",
+    "clientsTitle": "Our clients"
   }
-
 }

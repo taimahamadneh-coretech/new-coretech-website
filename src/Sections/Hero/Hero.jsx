@@ -1,67 +1,88 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './hero.css';
 import { useTranslation } from 'react-i18next';
-
-const videos = [
-  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero1_znyrrt.mp4",
-  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero3_wbo25o.mp4",
-  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero3_wbo25o.mp4"
-];
+import { heroVideos } from './heroVideos';
 
 function Hero() {
   const { t, i18n } = useTranslation();
   const [current, setCurrent] = useState(0);
+  const [inView, setInView] = useState(true);
+  const [pageVisible, setPageVisible] = useState(true);
   const videoRefs = useRef([]);
+  const sectionRef = useRef(null);
 
   const isRTL = i18n.dir() === 'rtl';
+  const total = heroVideos.length;
 
-  const handleEnded = () => {
-    const next = (current + 1) % videos.length;
-    setCurrent(next);
+  // Users who asked for less motion or data-saving get the poster only
+  const staticOnly =
+    (typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches) ||
+    (typeof navigator !== 'undefined' && navigator.connection?.saveData);
 
-    setTimeout(() => {
-      const nextVideo = videoRefs.current[next];
-      if (nextVideo) {
-        const playPromise = nextVideo.play();
-        if (playPromise !== undefined) {
-          playPromise.catch(() => {});
-        }
-      }
-    }, 700);
-  };
-
+  // Pause when the hero is scrolled out of view
   useEffect(() => {
-    const currentVideo = videoRefs.current[current];
-    if (currentVideo) {
-      const playPromise = currentVideo.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {});
+    const el = sectionRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  // Pause when the browser tab is hidden
+  useEffect(() => {
+    const onVis = () => setPageVisible(!document.hidden);
+    document.addEventListener('visibilitychange', onVis);
+    return () => document.removeEventListener('visibilitychange', onVis);
+  }, []);
+
+  // Play only the current video, pause the rest
+  useEffect(() => {
+    if (staticOnly) return;
+    videoRefs.current.forEach((v, i) => {
+      if (!v) return;
+      if (i === current && inView && pageVisible) {
+        const p = v.play();
+        if (p !== undefined) p.catch(() => {});
+      } else {
+        v.pause();
       }
-    }
-  }, [current]);
+    });
+  }, [current, inView, pageVisible, staticOnly]);
+
+  const handleEnded = () => setCurrent((c) => (c + 1) % total);
+
+  // Download only the current video and the next one
+  const preloadFor = (index) =>
+    index === current || index === (current + 1) % total ? 'auto' : 'none';
 
   return (
-    <section id="home" className="hero-section">
+    <section id="home" className="hero-section" ref={sectionRef} data-nav="dark">
       <div className="video-slider">
         <div
           className="video-track"
           style={{
             transform: isRTL
               ? `translateX(${current * 100}%)`
-              : `translateX(-${current * 100}%)`
+              : `translateX(-${current * 100}%)`,
           }}
         >
-          {videos.map((video, index) => (
+          {heroVideos.map((video, index) => (
             <video
-              key={index}
+              key={video.src}
               ref={(el) => (videoRefs.current[index] = el)}
-              src={video}
+              src={staticOnly ? undefined : video.src}
+              poster={video.poster}
               muted
               playsInline
-              preload="auto"
-              autoPlay={index === 0}
-              onEnded={index === current ? handleEnded : null}
+              preload={staticOnly ? 'none' : preloadFor(index)}
+              onEnded={index === current ? handleEnded : undefined}
+              onError={index === current ? handleEnded : undefined}
               className="hero-video"
+              aria-hidden="true"
             />
           ))}
         </div>

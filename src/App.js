@@ -1,19 +1,27 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Loader from './components/Loader/Loader';
 import Home from './pages/Home';
 import Careers from './pages/careers/Career';
+import { heroVideos } from './Sections/Hero/heroVideos';
 
 import './styles/global.css';
 
-const heroVideos = [
-  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero1_znyrrt.mp4",
-  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero3_wbo25o.mp4",
-  "https://res.cloudinary.com/dslt4vswp/video/upload/v1768467098/hero3_wbo25o.mp4"
-];
+// Open every page at the top (e.g. going from the Contact section to Careers).
+// Links with a #section (like /#contact) keep scrolling to that section.
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname, hash]);
+  return null;
+}
+
+
 
 const images = [
   "https://res.cloudinary.com/dslt4vswp/image/upload/v1768475834/image01_g81lxq.png",
@@ -36,18 +44,14 @@ function App() {
     return !sessionStorage.getItem('loaderShown');
   });
 
-  const videosRef = useRef([]);
 
   useEffect(() => {
     if (!sessionStorage.getItem('loaderShown')) {
-      heroVideos.forEach((src, index) => {
-        const video = document.createElement('video');
-        video.src = src;
-        video.preload = 'auto';
-        video.muted = true;
-        video.load(); 
-        videosRef.current[index] = video;
-      });
+      // Warm up the posters only; Hero loads the videos itself
+heroVideos.forEach(({ poster }) => {
+  const img = new Image();
+  img.src = poster;
+});
 
       images.forEach((src) => {
         const img = new Image();
@@ -84,6 +88,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />

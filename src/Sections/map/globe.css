@@ -1,0 +1,93 @@
+.globe-section {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.globe-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 560px;
+  margin: 10px auto 0;
+  touch-action: pan-y; /* page still scrolls vertically on phones */
+}
+
+.globe-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  cursor: grab;
+}
+
+.globe-canvas:active {
+  cursor: grabbing;
+}
+
+.globe-tooltip {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(11, 60, 138, 0.92);
+  color: var(--white);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: 0 6px 16px rgba(11, 60, 138, 0.25);
+  transform: translate(14px, -130%);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.globe-tooltip.is-visible {
+  opacity: 1;
+}
+
+.globe-legend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.globe-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.globe-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.globe-dot--market {
+  background: #1E7FE6;
+}
+
+.globe-legend-hint {
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
+
+@media (max-width: 900px) {
+  .globe-container {
+    height: 460px;
+  }
+}
+
+@media (max-width: 600px) {
+  .globe-container {
+    height: 360px;
+  }
+}

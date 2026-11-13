@@ -134,3 +134,41 @@
 [dir="rtl"] .header-container {
   flex-direction: row-reverse;
 }
+
+
+/* ---------- Navbar theme per section ---------- */
+/* nav-dark = default look (over the Hero video) */
+/* nav-light = over off-white sections */
+.header.nav-light {
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 4px 20px rgba(11, 60, 138, 0.1);
+}
+
+.header .logo img {
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.header.nav-light .logo img {
+  /* tints the white logo to dark blue (#0B3C8A) */
+  filter: brightness(0) saturate(100%) invert(16%) sepia(85%) saturate(2400%) hue-rotate(210deg) brightness(92%);
+}
+
+.header .nav-link {
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.header.nav-light .lang-btn img {
+  border-color: rgba(11, 60, 138, 0.3);
+}
+
+@media (min-width: 769px) {
+  .header.nav-light .nav-link {
+    color: var(--ink);
+  }
+}
+
+@media (max-width: 768px) {
+  .header.nav-light .bar:not(.open) {
+    background: var(--ink);
+  }
+}

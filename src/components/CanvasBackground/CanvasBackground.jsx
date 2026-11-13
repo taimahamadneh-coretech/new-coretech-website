@@ -1,10 +1,20 @@
 import React, { useRef, useEffect } from 'react';
 import './CanvasBackground.css';
  
+// Network animation on/off. false = only the background colour is shown
+// (the network code below is kept; set back to true to bring it back).
+const SHOW_NETWORK = true;
+
 const CanvasBackground = () => {
   const canvasRef = useRef(null);
  
   useEffect(() => {
+    if (!SHOW_NETWORK) {
+      // Wipe anything already drawn (e.g. a frame left over after hot reload)
+      const c = canvasRef.current;
+      if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height);
+      return;
+    }
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
     let animationFrameId;
@@ -31,20 +41,21 @@ const CanvasBackground = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
  
+    const NET = '30, 127, 230'; // blue-deep — keep in sync with --network-rgb
+
     const colorTheme = {
       starColors: [
-        [255, 255, 255],
-        [250, 250, 255],
-        [255, 250, 250],
-        [250, 255, 250],
+        [30, 127, 230],
+        [11, 60, 138],
+        [63, 169, 245],
       ],
-      connectionColor: 'rgba(255, 255, 255, 0.15)',
+      connectionColor: `rgba(${NET}, 0.15)`,
       connectionDistance: 160,
-      glowColor: 'rgba(255, 255, 255, 0)',
-      dataFlowColor: 'rgba(255, 255, 255, 0.25)',
+      glowColor: `rgba(${NET}, 0)`,
+      dataFlowColor: `rgba(${NET}, 0.25)`,
     };
  
-    const nodeCount = 150;
+    const nodeCount = 90; // was 150 — fewer dots, calmer
     const nodes = [];
  
     for (let i = 0; i < nodeCount; i++) {
@@ -55,10 +66,10 @@ const CanvasBackground = () => {
       nodes.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 3,
-        vy: (Math.random() - 0.5) * 3,
+        vx: (Math.random() - 0.5) * 0.8, // was * 3 — slower
+        vy: (Math.random() - 0.5) * 0.8, // was * 3 — slower
         radius: Math.random() * 1.8 + 1,
-        opacity: Math.random() * 0.4 + 0.3,
+        opacity: Math.random() * 0.25 + 0.2, // was * 0.4 + 0.3 — softer dots
         baseColor: [r, g, b],
         get color() {
           return `rgba(${this.baseColor.join(', ')}, ${this.opacity})`;
@@ -76,8 +87,8 @@ const CanvasBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
  
           if (distance < colorTheme.connectionDistance) {
-            const alpha = 0.15 * (1 - distance / colorTheme.connectionDistance);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            const alpha = 0.12 * (1 - distance / colorTheme.connectionDistance); // was 0.22 — fainter lines
+            ctx.strokeStyle = `rgba(${NET}, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -91,8 +102,8 @@ const CanvasBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
  
           if (distance < colorTheme.connectionDistance) {
-            const alpha = 1 * (1 - distance / colorTheme.connectionDistance);
-            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            const alpha = 0.35 * (1 - distance / colorTheme.connectionDistance); // was 1 — softer lines to the mouse
+            ctx.strokeStyle = `rgba(${NET}, ${alpha})`;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(mouse.x, mouse.y);
@@ -121,8 +132,8 @@ const CanvasBackground = () => {
           node.y,
           node.radius * 4
         );
-        glow.addColorStop(0, `rgba(255, 255, 255, ${node.opacity * 0.5})`);
-        glow.addColorStop(0.5, `rgba(255, 255, 255, ${node.opacity * 0.2})`);
+        glow.addColorStop(0, `rgba(${NET}, ${node.opacity * 0.3})`);
+        glow.addColorStop(0.5, `rgba(${NET}, ${node.opacity * 0.1})`);
         glow.addColorStop(1, colorTheme.glowColor);
  
         ctx.beginPath();
@@ -131,7 +142,7 @@ const CanvasBackground = () => {
         ctx.fill();
       });
  
-      drawDataFlow();
+      // drawDataFlow();  // off: it drew random dashed lines every frame (flicker)
  
       animationFrameId = requestAnimationFrame(animate);
     };

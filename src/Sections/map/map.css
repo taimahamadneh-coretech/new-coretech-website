@@ -3,7 +3,7 @@ svg path {
 }
 #name {
   position: fixed;
-  background: rgba(0, 0, 0, 0.75);
+  background: rgba(11, 60, 138, 0.9);
   color: var(--white);
   padding: 6px 10px;
   border-radius: 6px;
